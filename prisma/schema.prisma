@@ -1,0 +1,62 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  USER
+  ADMIN
+  STAFF
+}
+
+enum BookingStatus {
+  PENDING
+  CONFIRMED
+  CANCELLED
+  COMPLETED
+}
+
+model User {
+  id        String    @id
+  email     String    @unique
+  role      Role
+  createdAt DateTime  @default(now())
+  bookings  Booking[]
+}
+
+model TravelPackage {
+  id             Int       @id @default(autoincrement())
+  title          String
+  slug           String    @unique
+  description    String    @db.Text
+  price          Decimal
+  durationDays   Int
+  imageUrls      Json
+  isFeatured     Boolean   @default(false)
+  availableDates Json
+  createdAt      DateTime  @default(now())
+  bookings       Booking[]
+}
+
+model Booking {
+  id          Int           @id @default(autoincrement())
+  userId      String
+  packageId   Int
+  status      BookingStatus
+  totalAmount Decimal
+  travelDate  DateTime
+  createdAt   DateTime      @default(now())
+
+  user          User          @relation(fields: [userId], references: [id])
+  travelPackage TravelPackage @relation(fields: [packageId], references: [id])
+
+  @@index([userId])
+  @@index([packageId])
+}
