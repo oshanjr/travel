@@ -2,8 +2,9 @@ import { getPackage } from "@/app/actions/packages";
 import { PackageForm } from "@/components/admin/package-form";
 import { notFound } from "next/navigation";
 
-export default async function EditPackagePage({ params }: { params: { id: string } }) {
-    const pkg = await getPackage(params.id);
+export default async function EditPackagePage({ params }: { params: Promise<{ id: string }> }) {
+    const { id } = await params;
+    const pkg = await getPackage(id);
 
     if (!pkg) {
         notFound();

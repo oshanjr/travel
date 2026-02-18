@@ -17,6 +17,12 @@ export async function getPackage(id: string) {
     });
 }
 
+export async function getPackageBySlug(slug: string) {
+    return await prisma.package.findUnique({
+        where: { slug }
+    });
+}
+
 export async function createPackage(formData: FormData) {
     const title = formData.get("title") as string;
     const slug = formData.get("slug") as string;
