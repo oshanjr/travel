@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -13,50 +10,80 @@ datasource db {
 enum Role {
   USER
   ADMIN
-  STAFF
+  SUPER_ADMIN
 }
 
 enum BookingStatus {
   PENDING
   CONFIRMED
-  CANCELLED
   COMPLETED
+  CANCELLED
+}
+
+enum InquiryType {
+  GENERAL
+  CUSTOM_PACKAGE
+}
+
+// Site Configuration for Dynamic Content
+model SiteConfig {
+  id    String @id @default(cuid())
+  key   String @unique
+  value String @db.Text
+  type  String // TEXT, IMAGE_URL
 }
 
 model User {
-  id        String    @id
+  id        String    @id @default(cuid())
+  name      String?
   email     String    @unique
-  role      Role
+  password  String?   // Hashed
+  role      Role      @default(USER)
+  phone     String?
   createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
   bookings  Booking[]
 }
 
-model TravelPackage {
-  id             Int       @id @default(autoincrement())
-  title          String
-  slug           String    @unique
-  description    String    @db.Text
-  price          Decimal
-  durationDays   Int
-  imageUrls      Json
-  isFeatured     Boolean   @default(false)
-  availableDates Json
-  createdAt      DateTime  @default(now())
-  bookings       Booking[]
+model Package {
+  id            String    @id @default(cuid())
+  title         String
+  slug          String    @unique
+  price         Decimal
+  discountPrice Decimal?
+  duration      String    // e.g., "5 Days / 4 Nights"
+  location      String
+  images        Json      // Array of strings
+  itinerary     Json      // Array of objects { day: 1, title: "", description: "" }
+  inclusions    Json      // Array of strings
+  isFeatured    Boolean   @default(false)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  bookings      Booking[]
 }
 
 model Booking {
-  id          Int           @id @default(autoincrement())
-  userId      String
-  packageId   Int
-  status      BookingStatus
-  totalAmount Decimal
-  travelDate  DateTime
-  createdAt   DateTime      @default(now())
+  id            String        @id @default(cuid())
+  userId        String
+  packageId     String
+  status        BookingStatus @default(PENDING)
+  totalAmount   Decimal
+  paymentStatus String        @default("PENDING") // PENDING, PAID, FAILED
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
 
-  user          User          @relation(fields: [userId], references: [id])
-  travelPackage TravelPackage @relation(fields: [packageId], references: [id])
+  user    User    @relation(fields: [userId], references: [id])
+  package Package @relation(fields: [packageId], references: [id])
 
   @@index([userId])
   @@index([packageId])
+}
+
+model Inquiry {
+  id        String      @id @default(cuid())
+  name      String
+  phone     String
+  message   String      @db.Text
+  type      InquiryType @default(GENERAL)
+  createdAt DateTime    @default(now())
 }

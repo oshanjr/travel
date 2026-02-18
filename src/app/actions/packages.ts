@@ -1,66 +1,102 @@
 "use server";
 
-import { PrismaClient } from "@prisma/client";
-import { packageSchema, PackageFormValues } from "@/lib/schemas";
+import { prisma } from "@/lib/db";
 import { revalidatePath } from "next/cache";
-
-const prisma = new PrismaClient();
+import { redirect } from "next/navigation";
+import { Prisma } from "@prisma/client";
 
 export async function getPackages() {
-    try {
-        const packages = await prisma.travelPackage.findMany({
-            orderBy: { createdAt: "desc" },
-        });
-        return packages;
-    } catch (error) {
-        console.error("Failed to fetch packages:", error);
-        return [];
-    }
+    return await prisma.package.findMany({
+        orderBy: { createdAt: 'desc' }
+    });
 }
 
-export async function createPackage(data: PackageFormValues) {
+export async function getPackage(id: string) {
+    return await prisma.package.findUnique({
+        where: { id }
+    });
+}
+
+export async function createPackage(formData: FormData) {
+    const title = formData.get("title") as string;
+    const slug = formData.get("slug") as string;
+    const price = formData.get("price") as string;
+    const duration = formData.get("duration") as string;
+    const location = formData.get("location") as string;
+    const description = formData.get("description") as string; // Not in schema explicitly? 
+    // Wait, schema: title, slug, price, discountPrice, duration, location, images, itinerary, inclusions, isFeatured.
+    // Missing description in schema? Spec said "Package: id, title, slug...". 
+    // Wait, Spec V2 "Package: ... images(JSON), itinerary(JSON), inclusions(JSON), isFeatured".
+    // It didn't list 'description'. But 'itinerary' usually covers detail. 
+    // Let's assume we stick to schema. If needed, I'll add description to schema later.
+    // Converting FormData to correct types
+
+    const images = (formData.get("images") as string).split(',').map(s => s.trim()).filter(Boolean);
+    const inclusions = (formData.get("inclusions") as string).split(',').map(s => s.trim()).filter(Boolean);
+
+    // Itinerary is complex JSON. For now, expecting valid JSON string or empty array.
+    let itinerary = [];
     try {
-        // Validate again on server
-        const validated = packageSchema.parse({
-            ...data,
-            // Transformations happen in schema
-        });
-
-        // We need to parse the JSON strings back to objects for Prisma if the schema transformation resulted in strings
-        // Actually, Prisma expects Json type, which can be any JSON value.
-        // However, our Zod schema transforms them to stringified JSON.
-        // Let's adjust the logic to handle the specific Prisma input requirements.
-        // The Zod schema transforms to stringified JSON, but we might want raw arrays for Prisma if we defined it as Json.
-        // Let's refine the Zod schema or the parsing here. 
-        // For simplicity in this step, let's assume the Zod schema prepares the data correctly or we adjust here.
-
-        // Correction: the Zod schema returns stringified JSON for imageUrls and availableDates.
-        // Prisma `Json` type accepts objects/arrays directly.
-
-        // Let's rely on the input data being mostly correct but we might need to parse the JSON strings if Zod stringified them.
-        // Wait, the Zod schema above transforms to `JSON.stringify(...)`. 
-        // So `validated.imageUrls` is a string like '["url"]'.
-        // Prisma `Json` field requires a JS object/array/primitive, NOT a JSON string (unless it's a string field).
-        // In schema.prisma: `imageUrls Json`.
-        // So we should parse it back.
-
-        await prisma.travelPackage.create({
-            data: {
-                title: validated.title,
-                slug: validated.slug,
-                description: validated.description,
-                price: validated.price,
-                durationDays: validated.durationDays,
-                imageUrls: JSON.parse(validated.imageUrls as string),
-                isFeatured: validated.isFeatured,
-                availableDates: JSON.parse(validated.availableDates as string),
-            },
-        });
-
-        revalidatePath("/admin/packages");
-        return { success: true };
-    } catch (error) {
-        console.error("Failed to create package:", error);
-        return { success: false, error: "Failed to create package" };
+        itinerary = JSON.parse(formData.get("itinerary") as string || "[]");
+    } catch (e) {
+        console.error("Invalid itinerary JSON", e);
     }
+
+    await prisma.package.create({
+        data: {
+            title,
+            slug,
+            price: new Prisma.Decimal(price),
+            duration,
+            location,
+            images: images as Prisma.InputJsonValue,
+            inclusions: inclusions as Prisma.InputJsonValue,
+            itinerary: itinerary as Prisma.InputJsonValue,
+            isFeatured: formData.get("isFeatured") === "on",
+        }
+    });
+
+    revalidatePath("/admin/packages");
+    redirect("/admin/packages");
+}
+
+export async function deletePackage(id: string) {
+    await prisma.package.delete({ where: { id } });
+    revalidatePath("/admin/packages");
+}
+
+export async function updatePackage(id: string, formData: FormData) {
+    const title = formData.get("title") as string;
+    const slug = formData.get("slug") as string;
+    const price = formData.get("price") as string;
+    const duration = formData.get("duration") as string;
+    const location = formData.get("location") as string;
+
+    const images = (formData.get("images") as string).split(',').map(s => s.trim()).filter(Boolean);
+    const inclusions = (formData.get("inclusions") as string).split(',').map(s => s.trim()).filter(Boolean);
+
+    let itinerary = [];
+    try {
+        itinerary = JSON.parse(formData.get("itinerary") as string || "[]");
+    } catch (e) {
+        console.error("Invalid itinerary JSON", e);
+    }
+
+    await prisma.package.update({
+        where: { id },
+        data: {
+            title,
+            slug,
+            price: new Prisma.Decimal(price),
+            duration,
+            location,
+            images: images as Prisma.InputJsonValue,
+            inclusions: inclusions as Prisma.InputJsonValue,
+            itinerary: itinerary as Prisma.InputJsonValue,
+            isFeatured: formData.get("isFeatured") === "on",
+        }
+    });
+
+    revalidatePath("/admin/packages");
+    redirect("/admin/packages");
 }

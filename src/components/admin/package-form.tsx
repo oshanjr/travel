@@ -1,138 +1,109 @@
 "use client";
 
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import * as z from "zod";
-import { packageSchema, PackageFormValues } from "@/lib/schemas";
 import { Button } from "@/components/ui/button";
-import {
-    Form,
-    FormControl,
-    FormField,
-    FormItem,
-    FormLabel,
-    FormMessage,
-} from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { createPackage } from "@/app/actions/packages";
-import { useState } from "react";
+import { Label } from "@/components/ui/label";
+import { createPackage, updatePackage } from "@/app/actions/packages";
+import { Package } from "@prisma/client";
 
-export function PackageForm({ onSuccess }: { onSuccess: () => void }) {
-    const [loading, setLoading] = useState(false);
-    const form = useForm<PackageFormValues>({
-        resolver: zodResolver(packageSchema),
-        defaultValues: {
-            title: "",
-            slug: "",
-            description: "",
-            price: 0,
-            durationDays: 1,
-            imageUrls: "", // Expecting string input for now
-            isFeatured: false,
-        },
-    });
+interface PackageFormProps {
+    packageData?: Package;
+}
 
-    async function onSubmit(data: PackageFormValues) {
-        setLoading(true);
-        const result = await createPackage(data);
-        setLoading(false);
+export function PackageForm({ packageData }: PackageFormProps) {
+    const isEdit = !!packageData;
+    const action = isEdit ? updatePackage.bind(null, packageData.id) : createPackage;
 
-        if (result.success) {
-            form.reset();
-            onSuccess();
-        } else {
-            console.error(result.error);
-            // Ideally show toast error
-        }
-    }
+    // Helper to parse JSON fields safely for display
+    const getJsonString = (json: any) => {
+        if (!json) return "";
+        if (typeof json === "string") return json;
+        return JSON.stringify(json);
+    };
+
+    const getArrayString = (json: any) => {
+        if (Array.isArray(json)) return json.join(", ");
+        return "";
+    };
+
+    // Note: Prisma JSON types are strict. In DB it's Json. 
+    // We assume it's array of strings for images/inclusions.
 
     return (
-        <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-                <FormField
-                    control={form.control}
-                    name="title"
-                    render={({ field }) => (
-                        <FormItem>
-                            <FormLabel>Title</FormLabel>
-                            <FormControl>
-                                <Input placeholder="Package Title" {...field} />
-                            </FormControl>
-                            <FormMessage />
-                        </FormItem>
-                    )}
-                />
-                <FormField
-                    control={form.control}
-                    name="slug"
-                    render={({ field }) => (
-                        <FormItem>
-                            <FormLabel>Slug</FormLabel>
-                            <FormControl>
-                                <Input placeholder="package-slug" {...field} />
-                            </FormControl>
-                            <FormMessage />
-                        </FormItem>
-                    )}
-                />
-                <FormField
-                    control={form.control}
-                    name="description"
-                    render={({ field }) => (
-                        <FormItem>
-                            <FormLabel>Description</FormLabel>
-                            <FormControl>
-                                <Input placeholder="Description" {...field} />
-                            </FormControl>
-                            <FormMessage />
-                        </FormItem>
-                    )}
-                />
-                <div className="grid grid-cols-2 gap-4">
-                    <FormField
-                        control={form.control}
-                        name="price"
-                        render={({ field }) => (
-                            <FormItem>
-                                <FormLabel>Price</FormLabel>
-                                <FormControl>
-                                    <Input type="number" placeholder="0.00" {...field} />
-                                </FormControl>
-                                <FormMessage />
-                            </FormItem>
-                        )}
-                    />
-                    <FormField
-                        control={form.control}
-                        name="durationDays"
-                        render={({ field }) => (
-                            <FormItem>
-                                <FormLabel>Duration (Days)</FormLabel>
-                                <FormControl>
-                                    <Input type="number" {...field} />
-                                </FormControl>
-                                <FormMessage />
-                            </FormItem>
-                        )}
-                    />
+        <form action={action} className="space-y-6 bg-white p-6 rounded-lg border shadow-sm">
+            <div className="grid grid-cols-2 gap-4">
+                <div className="space-y-2">
+                    <Label htmlFor="title">Title</Label>
+                    <Input id="title" name="title" required defaultValue={packageData?.title} />
                 </div>
-                <FormField
-                    control={form.control}
-                    name="imageUrls"
-                    render={({ field }) => (
-                        <FormItem>
-                            <FormLabel>Image URL (Single)</FormLabel>
-                            <FormControl>
-                                <Input placeholder="https://..." {...field} />
-                            </FormControl>
-                            <FormMessage />
-                        </FormItem>
-                    )}
+                <div className="space-y-2">
+                    <Label htmlFor="slug">Slug</Label>
+                    <Input id="slug" name="slug" required defaultValue={packageData?.slug} />
+                </div>
+            </div>
+
+            <div className="grid grid-cols-2 gap-4">
+                <div className="space-y-2">
+                    <Label htmlFor="price">Price ($)</Label>
+                    <Input id="price" name="price" type="number" step="0.01" required defaultValue={Number(packageData?.price)} />
+                </div>
+                <div className="space-y-2">
+                    <Label htmlFor="duration">Duration</Label>
+                    <Input id="duration" name="duration" required defaultValue={packageData?.duration} />
+                </div>
+            </div>
+
+            <div className="space-y-2">
+                <Label htmlFor="location">Location</Label>
+                <Input id="location" name="location" required defaultValue={packageData?.location} />
+            </div>
+
+            <div className="space-y-2">
+                <Label htmlFor="images">Images (Comma separated URLs)</Label>
+                <Input
+                    id="images"
+                    name="images"
+                    defaultValue={getArrayString(packageData?.images)}
+                    placeholder="/img1.jpg, /img2.jpg"
                 />
-                <Button type="submit" disabled={loading}>
-                    {loading ? "Creating..." : "Create Package"}
-                </Button>
-            </form>
-        </Form>
+            </div>
+
+            <div className="space-y-2">
+                <Label htmlFor="inclusions">Inclusions (Comma separated)</Label>
+                <Input
+                    id="inclusions"
+                    name="inclusions"
+                    defaultValue={getArrayString(packageData?.inclusions)}
+                    placeholder="Transport, Breakfast"
+                />
+            </div>
+
+            <div className="space-y-2">
+                <Label htmlFor="itinerary">Itinerary (JSON)</Label>
+                <textarea
+                    id="itinerary"
+                    name="itinerary"
+                    className="flex min-h-[80px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                    placeholder='[{"day": 1, "title": "Arrival", "description": "..."}]'
+                    rows={5}
+                    defaultValue={getJsonString(packageData?.itinerary)}
+                />
+            </div>
+
+            <div className="flex items-center gap-2">
+                <input
+                    type="checkbox"
+                    id="isFeatured"
+                    name="isFeatured"
+                    className="h-4 w-4"
+                    defaultChecked={packageData?.isFeatured}
+                />
+                <Label htmlFor="isFeatured">Feature this package</Label>
+            </div>
+
+            <div className="flex justify-end gap-2">
+                <Button type="submit">{isEdit ? "Update Package" : "Create Package"}</Button>
+            </div>
+        </form>
     );
 }
