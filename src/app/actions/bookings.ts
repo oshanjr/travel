@@ -1,23 +1,29 @@
 "use server";
 
 import { prisma } from "@/lib/db";
-import { revalidatePath } from "next/cache";
-import { BookingStatus } from "@prisma/client";
+import { auth } from "@/auth";
 
-export async function getBookings() {
+export async function getUserBookings() {
+    const session = await auth();
+    if (!session?.user?.email) return [];
+
     return await prisma.booking.findMany({
-        include: {
-            user: { select: { name: true, email: true } },
-            package: { select: { title: true } }
+        where: {
+            user: {
+                email: session.user.email
+            }
         },
-        orderBy: { createdAt: 'desc' }
+        include: {
+            package: {
+                select: {
+                    title: true,
+                    slug: true,
+                    images: true,
+                }
+            }
+        },
+        orderBy: {
+            createdAt: 'desc'
+        }
     });
-}
-
-export async function updateBookingStatus(id: string, status: BookingStatus) {
-    await prisma.booking.update({
-        where: { id },
-        data: { status }
-    });
-    revalidatePath("/admin/bookings");
 }

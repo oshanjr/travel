@@ -31,7 +31,7 @@ export function DestinationsCarousel() {
             <CarouselContent className="-ml-4">
                 {destinations.map((dest, index) => (
                     <CarouselItem key={index} className="pl-4 md:basis-1/3 lg:basis-1/4">
-                        <div className="relative group cursor-pointer overflow-hidden rounded-xl h-80 shadow-md">
+                        <div className="relative group cursor-pointer overflow-hidden rounded-3xl h-80 shadow-lg ring-1 ring-black/5">
                             <Image
                                 src={dest.image}
                                 alt={dest.name}

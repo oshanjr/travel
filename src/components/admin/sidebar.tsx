@@ -19,7 +19,7 @@ export function Sidebar() {
     const pathname = usePathname();
 
     return (
-        <div className="flex h-screen w-64 flex-col border-r bg-gray-50/40">
+        <div className="fixed inset-y-0 left-0 z-10 flex h-screen w-64 flex-col border-r bg-gray-50/40 backdrop-blur-sm">
             <div className="flex h-14 items-center border-b px-6">
                 <Link href="/" className="flex items-center gap-2 font-semibold">
                     <span className="text-xl font-bold text-blue-700">Travel.lk</span>

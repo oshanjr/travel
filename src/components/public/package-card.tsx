@@ -18,7 +18,7 @@ export function PackageCard({ pkg }: PackageCardProps) {
     // const hasDiscount = pkg.discountPrice && pkg.discountPrice < pkg.price;
 
     return (
-        <div className="group rounded-2xl border border-gray-100 bg-white overflow-hidden hover:shadow-xl transition-all duration-300 flex flex-col h-full">
+        <div className="group rounded-3xl border border-white/20 bg-white/70 backdrop-blur-xl shadow-lg ring-1 ring-black/5 overflow-hidden hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 flex flex-col h-full">
             <div className="relative aspect-[4/3] w-full overflow-hidden">
                 <Image
                     src={mainImage}

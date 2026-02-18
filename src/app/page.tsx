@@ -31,7 +31,7 @@ export default async function Home() {
   const featuredPackages = await getFeaturedPackages();
 
   return (
-    <main className="min-h-screen bg-white">
+    <main className="min-h-screen bg-gray-50 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-blue-50 via-gray-50 to-gray-50">
       {/* Hero Section */}
       <div className="relative min-h-[85vh] w-full flex items-center justify-center bg-slate-900 text-white">
         {/* Background Image */}
