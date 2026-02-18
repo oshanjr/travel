@@ -30,10 +30,12 @@ export default function RegisterPage() {
         <div className="min-h-screen flex items-center justify-center relative">
             {/* Background Image */}
             <div
-                className="absolute inset-0 z-0 bg-cover bg-center"
-                style={{ backgroundImage: "url('https://images.unsplash.com/photo-1586796676774-c9f0bd5a2818?q=80&w=2000&auto=format&fit=crop')" }}
+                className="absolute inset-0 z-0 bg-cover bg-center bg-slate-900"
+                style={{
+                    backgroundImage: "url('https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?q=80&w=2000&auto=format&fit=crop')",
+                }}
             >
-                <div className="absolute inset-0 bg-black/40 backdrop-blur-[2px]" />
+                <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" />
             </div>
 
             {/* Glassy Card */}

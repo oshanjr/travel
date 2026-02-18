@@ -12,10 +12,12 @@ export default function LoginPage({ searchParams }: { searchParams: { success?: 
         <div className="min-h-screen flex items-center justify-center relative">
             {/* Background Image */}
             <div
-                className="absolute inset-0 z-0 bg-cover bg-center"
-                style={{ backgroundImage: "url('https://images.unsplash.com/photo-1625736300986-19379650d322?q=80&w=2000&auto=format&fit=crop')" }}
+                className="absolute inset-0 z-0 bg-cover bg-center bg-slate-900"
+                style={{
+                    backgroundImage: "url('https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?q=80&w=2000&auto=format&fit=crop')",
+                }}
             >
-                <div className="absolute inset-0 bg-black/50 backdrop-blur-[2px]" />
+                <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" />
             </div>
 
             <div className="relative z-10 w-full max-w-md space-y-8 rounded-3xl bg-white/5 backdrop-blur-md p-10 shadow-2xl border border-white/10 ring-1 ring-black/5">
