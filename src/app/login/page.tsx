@@ -4,9 +4,10 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import Link from "next/link";
 
-export default function LoginPage({ searchParams }: { searchParams: { success?: string, callbackUrl?: string } }) {
-    const successMessage = searchParams.success;
-    const callbackUrl = searchParams.callbackUrl || "/admin"; // Default to admin but logic in auth.config handles it too
+export default async function LoginPage({ searchParams }: { searchParams: Promise<{ success?: string, callbackUrl?: string }> }) {
+    const { success, callbackUrl: url } = await searchParams;
+    const successMessage = success;
+    const callbackUrl = url || "/admin";
 
     return (
         <div className="min-h-screen flex items-center justify-center relative">

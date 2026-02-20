@@ -66,6 +66,8 @@ model Booking {
   id            String        @id @default(cuid())
   userId        String
   packageId     String
+  date          DateTime
+  guests        Int
   status        BookingStatus @default(PENDING)
   totalAmount   Decimal
   paymentStatus String        @default("PENDING") // PENDING, PAID, FAILED
@@ -86,4 +88,24 @@ model Inquiry {
   message   String      @db.Text
   type      InquiryType @default(GENERAL)
   createdAt DateTime    @default(now())
+}
+
+model Destination {
+  id        String   @id @default(cuid())
+  name      String
+  image     String
+  tourCount String   @default("0 Tours")
+  order     Int      @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model HeroSlide {
+  id        String   @id @default(cuid())
+  image     String
+  title     String?
+  subtitle  String?
+  order     Int      @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }

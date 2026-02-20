@@ -1,11 +1,10 @@
 import { prisma } from "@/lib/db";
 import { Button } from "@/components/ui/button";
-import { HeroSearch } from "@/components/public/hero-search";
 import { DestinationsCarousel } from "@/components/public/destinations-carousel";
+import { HeroSlider } from "@/components/public/hero-slider";
 import { PackageCard } from "@/components/public/package-card";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
-import Image from "next/image";
 
 // Helper to fetch Hero Config
 async function getHeroConfig() {
@@ -17,56 +16,43 @@ async function getHeroConfig() {
   };
 }
 
+// Fetch hero slides
+async function getHeroSlides() {
+  return await prisma.heroSlide.findMany({
+    orderBy: { order: 'asc' },
+  });
+}
+
 // Fetch featured packages
 async function getFeaturedPackages() {
   return await prisma.package.findMany({
     where: { isFeatured: true },
     take: 3,
-    orderBy: { createdAt: 'desc' }
+    orderBy: { createdAt: 'desc' },
+  });
+}
+
+// Fetch destinations
+async function getDestinations() {
+  return await prisma.destination.findMany({
+    orderBy: { order: 'asc' },
   });
 }
 
 export default async function Home() {
-  const { title, image } = await getHeroConfig();
+  const heroConfig = await getHeroConfig();
+  const heroSlides = await getHeroSlides();
   const featuredPackages = await getFeaturedPackages();
+  const destinations = await getDestinations();
 
   return (
-    <main className="min-h-screen bg-gray-50 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-blue-50 via-gray-50 to-gray-50">
-      {/* Hero Section */}
-      <div className="relative min-h-[85vh] w-full flex items-center justify-center bg-slate-900 text-white">
-        {/* Background Image */}
-        <div className="absolute inset-0">
-          <Image
-            src={image}
-            alt="Hero Background"
-            fill
-            className="object-cover"
-            priority
-          />
-        </div>
-        {/* Dark Overlay for readability */}
-        <div className="absolute inset-0 bg-black/50" />
+    <main className="min-h-screen">
+      <HeroSlider
+        slides={heroSlides}
+        defaultTitle={heroConfig.title}
+        defaultImage={heroConfig.image}
+      />
 
-        <div className="container relative z-10 flex flex-col items-center justify-center px-4 md:px-6 text-center -mt-20">
-          <h1 className="mb-6 text-5xl font-bold leading-tight md:text-7xl max-w-4xl drop-shadow-xl animate-fade-in-up">
-            {title}
-          </h1>
-          <p className="mb-8 text-xl md:text-2xl font-light text-gray-100 max-w-2xl drop-shadow-md">
-            Discover the pearl of the Indian Ocean with our curated travel experiences.
-          </p>
-        </div>
-
-        {/* Search Widget (Floating overlapping bottom) */}
-        <div className="absolute -bottom-24 left-0 right-0 z-20 w-full px-4">
-          <HeroSearch />
-        </div>
-      </div>
-
-      {/* Spacing for Search Widget overlap */}
-      <div className="h-32 bg-transparent"></div>
-
-
-      {/* Destinations Section */}
       <section className="py-20 bg-gray-50/50">
         <div className="container mx-auto px-4 md:px-6">
           <div className="flex items-end justify-between mb-10">
@@ -78,7 +64,7 @@ export default async function Home() {
               View All <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
           </div>
-          <DestinationsCarousel />
+          <DestinationsCarousel destinations={destinations} />
         </div>
       </section>
 

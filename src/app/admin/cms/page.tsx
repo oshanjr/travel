@@ -50,11 +50,21 @@ export default async function CMSPage() {
                     </TableHeader>
                     <TableBody>
                         {configs.map((config) => (
-                            <TableRow key={config.id}>
+                            <TableRow key={config.key}>
                                 <TableCell className="font-mono text-xs font-medium">{config.key}</TableCell>
                                 <TableCell className="text-xs text-muted-foreground">{config.type}</TableCell>
                                 <TableCell className="max-w-md truncate" title={config.value}>
-                                    {config.value}
+                                    {config.type === 'image' ? (
+                                        <div className="flex items-center gap-2">
+                                            <div className="relative h-8 w-12 rounded overflow-hidden bg-gray-100">
+                                                {/* eslint-disable-next-line @next/next/no-img-element */}
+                                                <img src={config.value} alt={config.key} className="object-cover w-full h-full" />
+                                            </div>
+                                            <span className="truncate text-xs text-gray-500">{config.value}</span>
+                                        </div>
+                                    ) : (
+                                        config.value
+                                    )}
                                 </TableCell>
                                 <TableCell className="text-right">
                                     <Dialog>
@@ -76,17 +86,39 @@ export default async function CMSPage() {
                                                 await updateSiteConfig(config.key, value);
                                             }}>
                                                 <div className="grid gap-4 py-4">
-                                                    <div className="grid grid-cols-4 items-center gap-4">
-                                                        <Label htmlFor="value" className="text-right">
-                                                            Value
+                                                    <div className="grid gap-2">
+                                                        <Label htmlFor="value">
+                                                            Value {config.type === 'image' && '(Image URL)'}
                                                         </Label>
-                                                        <Input
-                                                            id="value"
-                                                            name="value"
-                                                            defaultValue={config.value}
-                                                            className="col-span-3"
-                                                        />
+                                                        {config.type === 'textarea' ? (
+                                                            <textarea
+                                                                id="value"
+                                                                name="value"
+                                                                defaultValue={config.value}
+                                                                className="flex min-h-[80px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                                                            />
+                                                        ) : (
+                                                            <Input
+                                                                id="value"
+                                                                name="value"
+                                                                defaultValue={config.value}
+                                                                className="col-span-3"
+                                                            />
+                                                        )}
                                                     </div>
+                                                    {config.type === 'image' && (
+                                                        <div className="space-y-2">
+                                                            <Label>Preview</Label>
+                                                            <div className="relative aspect-video w-full rounded-lg overflow-hidden bg-gray-100 border">
+                                                                {/* Client-side preview logic would be ideal, but for now just showing current. 
+                                                                     Ideally we'd use a client component for the form to show live preview. 
+                                                                     Keeping it simple server-side for now. */}
+                                                                {/* eslint-disable-next-line @next/next/no-img-element */}
+                                                                <img src={config.value} alt="Preview" className="object-cover w-full h-full" />
+                                                            </div>
+                                                            <p className="text-xs text-muted-foreground">Preview shows current saved value.</p>
+                                                        </div>
+                                                    )}
                                                 </div>
                                                 <DialogFooter>
                                                     <DialogClose asChild>

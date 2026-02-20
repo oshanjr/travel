@@ -13,7 +13,12 @@ export default async function EditPackagePage({ params }: { params: Promise<{ id
     return (
         <div className="max-w-2xl mx-auto">
             <h1 className="text-2xl font-bold mb-6">Edit Package</h1>
-            <PackageForm packageData={pkg} />
+            <h1 className="text-2xl font-bold mb-6">Edit Package</h1>
+            <PackageForm packageData={{
+                ...pkg,
+                price: Number(pkg.price),
+                // Ensure other Decimal fields are handled if added later
+            }} />
         </div>
     );
 }

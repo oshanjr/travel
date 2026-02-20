@@ -7,7 +7,7 @@ import { createPackage, updatePackage } from "@/app/actions/packages";
 import { Package } from "@prisma/client";
 
 interface PackageFormProps {
-    packageData?: Package;
+    packageData?: any; // Using any to handle serialized Decimal -> number conversion from server component
 }
 
 export function PackageForm({ packageData }: PackageFormProps) {
@@ -59,12 +59,17 @@ export function PackageForm({ packageData }: PackageFormProps) {
             </div>
 
             <div className="space-y-2">
-                <Label htmlFor="images">Images (Comma separated URLs)</Label>
-                <Input
+                <Label htmlFor="images">Images (URLs)</Label>
+                <div className="text-xs text-muted-foreground mb-1">
+                    Enter image URLs, one per line. The first image will be the main cover.
+                </div>
+                <textarea
                     id="images"
                     name="images"
-                    defaultValue={getArrayString(packageData?.images)}
-                    placeholder="/img1.jpg, /img2.jpg"
+                    defaultValue={getArrayString(packageData?.images).split(", ").join("\n")}
+                    placeholder="https://example.com/image1.jpg&#10;https://example.com/image2.jpg"
+                    className="flex min-h-[100px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                    rows={5}
                 />
             </div>
 

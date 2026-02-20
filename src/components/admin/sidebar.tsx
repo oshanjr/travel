@@ -4,12 +4,14 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import { LayoutDashboard, Settings, Package, Calendar, Users, LogOut } from "lucide-react";
+import { LayoutDashboard, Settings, Package, Calendar, Users, LogOut, Map, ImageIcon } from "lucide-react";
 import { signOut } from "next-auth/react";
 
 const sidebarLinks = [
     { href: "/admin", label: "Dashboard", icon: LayoutDashboard },
     { href: "/admin/cms", label: "CMS / Site Config", icon: Settings },
+    { href: "/admin/hero", label: "Hero Slides", icon: ImageIcon },
+    { href: "/admin/destinations", label: "Destinations", icon: Map },
     { href: "/admin/packages", label: "Packages", icon: Package },
     { href: "/admin/bookings", label: "Bookings", icon: Calendar },
     { href: "/admin/admins", label: "Admins", icon: Users },
