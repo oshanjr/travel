@@ -1,83 +1,65 @@
-Here is the content for the SPEC-v2.md file. You can copy the text below directly.
+Context: We are upgrading the existing Sri Lanka Travel Agency web app. The client wants to add a "Custom Trip Builder" for foreigners who don't know exactly where to go and want a fully customized package. Do NOT change the existing design theme (GoFly style, clean, blue/white/amber).
 
-Project Specification: Sri Lanka Travel Agency (Recovery & Polish)
-1. Visual Identity & UI Standards (The "GoFly" Look)
-Theme: Clean, modern, trustworthy. Mimics the "GoFly" aesthetic with ample white space and rounded corners.
+Phase 1: Database Update
+Update the schema.prisma file to include a new model called CustomTripRequest. It should include:
 
-Colors:
+id (String or Int)
 
-Primary Blue: #0EA5E9 (Sky Blue 500) - Used for primary buttons, active states, and links.
+customerName (String)
 
-Secondary Amber: #F59E0B (Amber 500) - Used for "Sale" tags, star ratings, and accents.
+customerEmail (String)
 
-Text: #0F172A (Slate 900) for Headings, #64748B (Slate 500) for body text.
+guestCount (Int)
 
-Backgrounds: White #FFFFFF for main cards, #F8FAFC (Slate 50) for alternate sections.
+durationDays (Int)
 
-Typography:
+destinations (Json) - To store an array of selected destinations.
 
-Headings: Poppins (Bold/SemiBold).
+vehicleType (String) - Enum or String (Car, Mini Car, Van, Van Highroof, Bus).
 
-Body: Inter (Regular/Medium).
+needsAccommodation (Boolean) - Default false.
 
-Layout Rules:
+activitiesOfInterest (String) - Text area for custom requests.
 
-Containers: ALL page content (except full-width Hero) must be inside a container mx-auto px-4 md:px-6 wrapper.
+status (String) - Default 'PENDING' (Can be PENDING, QUOTED, ACCEPTED).
 
-Spacing: Sections must be vertically separated by py-16 or py-20.
+quotedPrice (Decimal?) - Optional, for the admin to fill later.
 
-Cards: Must use shadow-lg, rounded-xl, overflow-hidden, and border border-slate-100.
+createdAt (DateTime)
+After updating the schema, run npx prisma db push or create a migration.
 
-Images: MUST use aspect-[4/3] or aspect-video with object-cover to prevent layout shifts.
+Phase 2: The Public "Custom Trip" Page (/custom-trip)
+Create a new page at app/custom-trip/page.tsx.
 
-2. Core Pages & Routing
-/ (Home):
+UI Design: Use a clean, centered layout with a shadcn Card. It must match the existing site's typography and spacing.
 
-Hero: Full-width background image (Sri Lankan beach/nature) with a dark overlay (bg-black/40).
+The Form: Build a comprehensive form using react-hook-form and zod.
 
-Search Widget: A floating card overlapping the bottom of the Hero. Contains Tabs for "Tours", "Hotels", "Visa".
+Fields required: Name, Email, Guest Count (Number input), Duration (Number input), Vehicle Type (shadcn Select with options: Car, Mini Car, Van, Van Highroof, Bus).
 
-Featured Destinations: A horizontal scroll/carousel of circular or rounded location images.
+Destinations (Multi-Select): Create a multi-select field (you can use shadcn Command with badges) pre-loaded with popular Sri Lankan destinations (Colombo, Kandy, Ella, Sigiriya, Galle, Mirissa, Nuwara Eliya, Yala, Trincomalee, Anuradhapura). Allow multiple selections.
 
-Popular Packages: A 3-column grid of package cards.
+Accommodation: A simple shadcn Checkbox: "Do you want us to arrange your accommodation?" with a helper text explaining that we will calculate the cost and notify them.
 
-/packages (List): A grid of all available packages with a sidebar for filtering (Price, Duration, Location).
+Activities: A shadcn Textarea for "What kind of activities are you interested in? (e.g., Hiking, Wildlife Safari, Beach relaxing)".
 
-/packages/[slug] (Detail): CRITICAL MISSING PAGE.
+Action: On submit, save this to the database using a Server Action and show a success message ("We will contact you shortly with a customized quote!").
 
-Hero: 50vh height image header.
+Navigation: Link the "Custom Itinerary" text on the Home page Hero widget to this new /custom-trip page.
 
-Content: Tabs for "Overview", "Itinerary" (Vertical Timeline), "Inclusions".
+Phase 3: The Admin Integration (/admin/custom-requests)
 
-Booking Sidebar: Sticky card with Price, Date Picker, and "Book Now" button.
+Create a new page in the Admin panel to list these CustomTripRequests using a shadcn Table.
 
-/destinations: A clean grid of locations (Sigiriya, Ella, Kandy, etc.).
+Show a badge for the status (Pending = Yellow, Quoted = Blue, Accepted = Green).
 
-/contact: Simple contact form + Map placeholder.
+Add an "Action" button that opens a Dialog. Inside the Dialog, the admin can view all the user's requirements, type in a quotedPrice, and click "Send Quote" (which updates the database status to QUOTED and saves the price).
 
-/admin: (Protected) Dashboard, Bookings Table, CMS Editor (SiteConfig), Package Management.
+How this works for your business flow:
+The Visitor: Goes to /custom-trip, selects 3 Guests, 7 Days, [Kandy, Ella, Galle], Van, Needs Accommodation, "We love hiking".
 
-3. Database & Data Integrity (Prisma)
-Images: All seed data MUST use high-quality Unsplash Source URLs. NO placeholders.
+The System: Saves this as "PENDING" and you get it in your Admin Panel.
 
-SiteConfig: Dynamic content for the Home Page (Hero Title, Hero Image) is fetched from the SiteConfig table.
+You (The Admin): You read the request, call your hotel contacts for Kandy/Ella/Galle, calculate the van cost, come up with a price (e.g., $1,200). You enter $1,200 in the Admin panel and update it to "QUOTED".
 
-Auth: NextAuth v5 (Credentials).
-
-Super Admin: Seeded via script (admin@travel.lk).
-
-Regular Admins: Created only by Super Admin.
-
-Customers: Sign up via Email/Password or Google.
-
-4. Components (shadcn/ui)
-Required: Button, Card, Carousel, Tabs, Dialog, Input, Select, Textarea, Form, Calendar, Popover, Sheet (Mobile Menu), Table (Admin), Badge (Status).
-
-Icons: lucide-react for all UI icons.
-
-5. Deployment Prep
-Config: next.config.js must allow images from images.unsplash.com.
-
-Loading: loading.tsx must be present for root and admin layouts.
-
-Error: error.tsx must be present to handle crashes gracefully.
+Next step (Later): Once this is built, you can easily add an email integration (like Resend or SendGrid) so that when you hit "Send Quote" in the admin panel, it automatically emails the customized itinerary and price directly to the customer!

@@ -109,3 +109,19 @@ model HeroSlide {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
+
+model CustomTripRequest {
+  id                 String   @id @default(cuid())
+  customerName       String
+  customerEmail      String
+  guestCount         Int
+  durationDays       Int
+  destinations       Json     // Array of selected destinations
+  vehicleType        String   // Car, Mini Car, Van, Van Highroof, Bus
+  needsAccommodation Boolean  @default(false)
+  activitiesOfInterest String? @db.Text // Optional text area for custom requests
+  status             String   @default("PENDING") // PENDING, QUOTED, ACCEPTED
+  quotedPrice        Decimal? // Optional, for the admin to fill later
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+}

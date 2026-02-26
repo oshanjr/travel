@@ -34,6 +34,12 @@ export function HeroSearch() {
                                 <FileText className="h-4 w-4" /> Visa
                             </TabsTrigger>
                         </TabsList>
+
+                        <div className="absolute right-6 top-4 hidden md:block">
+                            <Button asChild variant="outline" className="border-amber-500 text-amber-600 hover:bg-amber-50 hover:text-amber-700 font-semibold shadow-sm">
+                                <a href="/custom-trip">Custom Itinerary</a>
+                            </Button>
+                        </div>
                     </div>
 
                     <div className="p-6 md:p-8 bg-white">

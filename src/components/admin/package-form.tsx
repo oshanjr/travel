@@ -8,6 +8,7 @@ import { Package } from "@prisma/client";
 
 interface PackageFormProps {
     packageData?: any; // Using any to handle serialized Decimal -> number conversion from server component
+    onSuccess?: () => void;
 }
 
 export function PackageForm({ packageData }: PackageFormProps) {
