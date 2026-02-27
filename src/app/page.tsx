@@ -8,35 +8,58 @@ import Link from "next/link";
 
 // Helper to fetch Hero Config
 async function getHeroConfig() {
-  const title = await prisma.siteConfig.findUnique({ where: { key: "hero_title" } });
-  const image = await prisma.siteConfig.findUnique({ where: { key: "hero_image" } });
-  return {
-    title: title?.value || "Explore Sri Lanka",
-    image: image?.value || "/hero-bg.jpg"
-  };
+  try {
+    const title = await prisma.siteConfig.findUnique({ where: { key: "hero_title" } });
+    const image = await prisma.siteConfig.findUnique({ where: { key: "hero_image" } });
+    return {
+      title: title?.value || "Explore Sri Lanka",
+      image: image?.value || "/hero-bg.jpg"
+    };
+  } catch (error) {
+    console.error("Error fetching hero config:", error);
+    return {
+      title: "Explore Sri Lanka",
+      image: "/hero-bg.jpg"
+    };
+  }
 }
 
 // Fetch hero slides
 async function getHeroSlides() {
-  return await prisma.heroSlide.findMany({
-    orderBy: { order: 'asc' },
-  });
+  try {
+    return await prisma.heroSlide.findMany({
+      orderBy: { order: 'asc' },
+    });
+  } catch (error) {
+    console.error("Error fetching hero slides:", error);
+    return [];
+  }
 }
 
 // Fetch featured packages
 async function getFeaturedPackages() {
-  return await prisma.package.findMany({
-    where: { isFeatured: true },
-    take: 3,
-    orderBy: { createdAt: 'desc' },
-  });
+  try {
+    return await prisma.package.findMany({
+      where: { isFeatured: true },
+      take: 3,
+      orderBy: { createdAt: 'desc' },
+    });
+  } catch (error) {
+    console.error("Error fetching featured packages:", error);
+    return [];
+  }
 }
 
 // Fetch destinations
 async function getDestinations() {
-  return await prisma.destination.findMany({
-    orderBy: { order: 'asc' },
-  });
+  try {
+    return await prisma.destination.findMany({
+      orderBy: { order: 'asc' },
+    });
+  } catch (error) {
+    console.error("Error fetching destinations:", error);
+    return [];
+  }
 }
 
 export default async function Home() {
@@ -53,7 +76,7 @@ export default async function Home() {
         defaultImage={heroConfig.image}
       />
 
-      <section className="py-20 bg-gray-50/50">
+      <section className="pt-32 pb-20 bg-gray-50/50">
         <div className="container mx-auto px-4 md:px-6">
           <div className="flex items-end justify-between mb-10">
             <div>

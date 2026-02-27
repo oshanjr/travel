@@ -46,7 +46,7 @@ export function HeroSlider({ slides, defaultTitle, defaultImage }: HeroSliderPro
                         Discover the pearl of the Indian Ocean with our curated travel experiences.
                     </p>
                 </div>
-                <div className="absolute -bottom-24 left-0 right-0 z-20 w-full px-4">
+                <div className="absolute -bottom-14 left-0 right-0 z-20 w-full px-4">
                     <HeroSearch />
                 </div>
             </div>
@@ -99,7 +99,7 @@ export function HeroSlider({ slides, defaultTitle, defaultImage }: HeroSliderPro
             </Carousel>
 
             {/* Search Widget - Positioned absolutely over the carousel */}
-            <div className="absolute -bottom-24 left-0 right-0 z-20 w-full px-4">
+            <div className="absolute -bottom-14 left-0 right-0 z-20 w-full px-4">
                 <HeroSearch />
             </div>
         </div>

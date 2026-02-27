@@ -29,6 +29,9 @@ export function Navbar({ session }: { session: any }) {
     const routes = [
         { href: "/", label: "Home" },
         { href: "/packages", label: "Packages" },
+        { href: "/about", label: "About Us" },
+        { href: "/contact", label: "Contact Us" },
+        { href: "/blog", label: "Blog" },
     ];
 
     // Dynamic classes based on scroll and path

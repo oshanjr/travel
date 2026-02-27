@@ -7,7 +7,7 @@ export const metadata = {
 
 export default function CustomTripPage() {
     return (
-        <main className="min-h-screen bg-slate-50 py-12 md:py-24">
+        <main className="min-h-screen bg-slate-50 pt-28 pb-12 md:pt-36 md:pb-24">
             <div className="container mx-auto px-4 max-w-3xl">
                 <div className="text-center mb-10">
                     <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4 tracking-tight">
