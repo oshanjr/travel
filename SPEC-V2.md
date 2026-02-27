@@ -62,4 +62,4 @@ The System: Saves this as "PENDING" and you get it in your Admin Panel.
 
 You (The Admin): You read the request, call your hotel contacts for Kandy/Ella/Galle, calculate the van cost, come up with a price (e.g., $1,200). You enter $1,200 in the Admin panel and update it to "QUOTED".
 
-Next step (Later): Once this is built, you can easily add an email integration (like Resend or SendGrid) so that when you hit "Send Quote" in the admin panel, it automatically emails the customized itinerary and price directly to the customer!
+Next step (Later): Once this is built, you can easily add an email integration (like Resend or SendGrid) so that when you hit "Send Quote" in the admin panel, it automatically emails the customized itinerary and price directly to the customer.
