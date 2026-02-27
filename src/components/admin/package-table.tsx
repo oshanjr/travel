@@ -6,10 +6,10 @@ import {
     TableHeader,
     TableRow,
 } from "@/components/ui/table";
-import { TravelPackage } from "@prisma/client";
+import { Package } from "@prisma/client";
 
 interface PackageTableProps {
-    packages: TravelPackage[];
+    packages: Package[];
 }
 
 export function PackageTable({ packages }: PackageTableProps) {
@@ -21,7 +21,7 @@ export function PackageTable({ packages }: PackageTableProps) {
                         <TableHead>Title</TableHead>
                         <TableHead>Slug</TableHead>
                         <TableHead className="text-right">Price</TableHead>
-                        <TableHead className="text-right">Duration (Days)</TableHead>
+                        <TableHead className="text-right">Duration</TableHead>
                     </TableRow>
                 </TableHeader>
                 <TableBody>
@@ -37,7 +37,7 @@ export function PackageTable({ packages }: PackageTableProps) {
                                 <TableCell className="font-medium">{pkg.title}</TableCell>
                                 <TableCell>{pkg.slug}</TableCell>
                                 <TableCell className="text-right">${Number(pkg.price).toFixed(2)}</TableCell>
-                                <TableCell className="text-right">{pkg.durationDays}</TableCell>
+                                <TableCell className="text-right">{pkg.duration}</TableCell>
                             </TableRow>
                         ))
                     )}

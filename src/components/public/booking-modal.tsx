@@ -12,43 +12,51 @@ import {
 } from "@/components/ui/dialog";
 import { useState } from "react";
 import { createBooking } from "@/app/actions/bookings";
-import { TravelPackage } from "@prisma/client";
+import { Package } from "@prisma/client";
 import { Calendar } from "@/components/ui/calendar";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { CalendarIcon } from "lucide-react";
 import { format } from "date-fns";
 import { cn } from "@/lib/utils";
-import { useUser } from "@clerk/nextjs";
+import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
 interface BookingModalProps {
-    pkg: TravelPackage;
+    pkg: Package;
 }
 
 export function BookingModal({ pkg }: BookingModalProps) {
     const [open, setOpen] = useState(false);
     const [date, setDate] = useState<Date | undefined>(new Date());
     const [loading, setLoading] = useState(false);
-    const { isSignedIn } = useUser();
+    const { data: session } = useSession();
     const router = useRouter();
 
     async function handleBooking() {
-        if (!isSignedIn) {
-            router.push("/sign-in");
+        if (!session?.user) {
+            router.push("/login");
             return;
         }
 
         if (!date) return;
 
         setLoading(true);
-        const result = await createBooking(pkg.id, Number(pkg.price), date);
-        setLoading(false);
+        try {
+            const formData = new FormData();
+            formData.append("packageId", pkg.id);
+            formData.append("date", date.toISOString());
+            formData.append("guests", "1");
+            formData.append("totalAmount", pkg.price.toString());
 
-        if (result.success) {
-            setOpen(false);
-            router.push("/my-bookings");
-        } else {
-            alert("Failed to book: " + result.error);
+            await createBooking(formData);
+        } catch (error: any) {
+            // If it's a NEXT_REDIRECT error, it's expected and we shouldn't alert
+            if (error.message && error.message.includes('NEXT_REDIRECT')) {
+                throw error;
+            }
+            alert("Failed to book.");
+        } finally {
+            setLoading(false);
         }
     }
 
