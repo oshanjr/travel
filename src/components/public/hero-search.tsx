@@ -8,9 +8,10 @@ export function HeroSearch() {
     return (
         <div className="w-full max-w-4xl mx-auto relative z-20">
             <div className="bg-white rounded-xl shadow-2xl overflow-hidden border border-gray-100 flex flex-col">
-                <div className="bg-gray-50/50 border-b px-6 py-4 flex flex-col sm:flex-row justify-between items-center gap-4">
-                    <h3 className="font-semibold text-gray-700 text-lg hidden sm:block">Find Your Perfect Package</h3>
-                    <Button asChild className="bg-amber-500 hover:bg-amber-600 text-white font-semibold shadow-md w-full sm:w-auto h-11 px-6">
+                {/* Desktop/Tablet Header */}
+                <div className="bg-gray-50/50 border-b px-6 py-4 hidden sm:flex justify-between items-center gap-4">
+                    <h3 className="font-semibold text-gray-700 text-lg">Find Your Perfect Package</h3>
+                    <Button asChild className="bg-amber-500 hover:bg-amber-600 text-white font-semibold shadow-md h-11 px-6">
                         <a href="/custom-trip">
                             <Sparkles className="mr-2 h-5 w-5" />
                             Build a Custom Itinerary
@@ -38,6 +39,16 @@ export function HeroSearch() {
                             <Search className="mr-2 h-4 w-4" /> Search Packages
                         </Button>
                     </form>
+
+                    {/* Mobile-only Custom Itinerary Button */}
+                    <div className="mt-4 sm:hidden">
+                        <Button asChild className="bg-amber-500 hover:bg-amber-600 text-white font-semibold shadow-md w-full h-12">
+                            <a href="/custom-trip">
+                                <Sparkles className="mr-2 h-5 w-5" />
+                                Build a Custom Itinerary
+                            </a>
+                        </Button>
+                    </div>
                 </div>
             </div>
         </div>
