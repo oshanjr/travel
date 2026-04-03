@@ -2,7 +2,6 @@
 
 import * as React from "react";
 import Image from "next/image";
-import { Card, CardContent } from "@/components/ui/card";
 import {
     Carousel,
     CarouselContent,
@@ -10,7 +9,7 @@ import {
     CarouselNext,
     CarouselPrevious,
 } from "@/components/ui/carousel";
-
+import { MapPin } from "lucide-react";
 import { Destination } from "@prisma/client";
 
 interface DestinationsCarouselProps {
@@ -38,18 +37,34 @@ export function DestinationsCarousel({ destinations }: DestinationsCarouselProps
                                 fill
                                 className="object-cover transition-transform duration-700 group-hover:scale-110"
                             />
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity" />
-                            <div className="absolute bottom-0 left-0 p-6 text-white transform translate-y-2 group-hover:translate-y-0 transition-transform">
-                                <h3 className="text-xl font-bold mb-1">{dest.name}</h3>
-                                <p className="text-sm text-gray-300 font-medium">{dest.tourCount}</p>
+                            {/* Warm vignette overlay */}
+                            <div className="absolute inset-0 vignette-warm opacity-90 group-hover:opacity-100 transition-opacity" />
+
+                            {/* Destination name badge */}
+                            <div className="absolute bottom-0 left-0 p-6 text-white transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+                                <div className="flex items-center gap-1.5 mb-1">
+                                    <MapPin className="h-3.5 w-3.5 text-amber-400 shrink-0" />
+                                    <span className="text-[10px] font-semibold uppercase tracking-wider text-amber-400/90">
+                                        Sri Lanka
+                                    </span>
+                                </div>
+                                <h3 className="text-xl font-bold mb-0.5 font-serif">{dest.name}</h3>
+                                <p className="text-sm text-emerald-200/80 font-medium">{dest.tourCount}</p>
+                            </div>
+
+                            {/* Hover top tag */}
+                            <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                <span className="bg-amber-500 text-emerald-950 text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wide shadow">
+                                    Explore
+                                </span>
                             </div>
                         </div>
                     </CarouselItem>
                 ))}
             </CarouselContent>
-            <div className="hidden md:flex justify-end gap-2 mt-4 pr-12">
-                <CarouselPrevious className="relative translate-y-0 translate-x-0 bg-transparent border-gray-300 hover:bg-blue-50 text-gray-500 hover:text-blue-600" />
-                <CarouselNext className="relative translate-y-0 translate-x-0 bg-transparent border-gray-300 hover:bg-blue-50 text-gray-500 hover:text-blue-600" />
+            <div className="hidden md:flex justify-end gap-2 mt-5 pr-12">
+                <CarouselPrevious className="relative translate-y-0 translate-x-0 bg-white border-emerald-200 hover:bg-emerald-50 text-emerald-700 hover:text-emerald-900 shadow-sm" />
+                <CarouselNext className="relative translate-y-0 translate-x-0 bg-white border-emerald-200 hover:bg-emerald-50 text-emerald-700 hover:text-emerald-900 shadow-sm" />
             </div>
         </Carousel>
     );
