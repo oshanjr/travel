@@ -23,6 +23,7 @@ export function Navbar({ session }: { session: any }) {
 
     const routes = [
         { href: "/", label: "Home" },
+        { href: "/explore", label: "Explore Map" },
         { href: "/packages", label: "Packages" },
         { href: "/about", label: "About Us" },
         { href: "/contact", label: "Contact Us" },

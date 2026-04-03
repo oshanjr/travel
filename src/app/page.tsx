@@ -1,4 +1,5 @@
 import { prisma } from "@/lib/db";
+import { MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { DestinationsCarousel } from "@/components/public/destinations-carousel";
 import { HeroSlider } from "@/components/public/hero-slider";
@@ -128,6 +129,66 @@ export default async function Home() {
             </Button>
           </div>
           <DestinationsCarousel destinations={destinations} />
+        </div>
+      </section>
+
+      {/* ── Explore by Map Teaser ─────────────────────────────── */}
+      <section className="py-20 bg-emerald-950 relative overflow-hidden">
+        {/* Decorative map-dots pattern */}
+        <div className="absolute inset-0 opacity-[0.07]" style={{ backgroundImage: "radial-gradient(circle at 1px 1px, #fff 1px, transparent 0)", backgroundSize: "28px 28px" }} />
+        <div className="container mx-auto px-4 md:px-6 relative z-10">
+          <div className="flex flex-col md:flex-row items-center gap-10">
+            {/* Text side */}
+            <div className="flex-1 text-center md:text-left">
+              <span className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-widest text-amber-400 mb-4">
+                <span className="text-[0.55rem]">✦</span> Interactive Map
+              </span>
+              <h2 className="text-3xl md:text-4xl font-bold text-white font-serif mb-4">
+                Explore All 25 Districts
+              </h2>
+              <p className="text-emerald-200/70 mb-8 max-w-md mx-auto md:mx-0 leading-relaxed">
+                Click on any district to discover its unique highlights, must-see attractions, activities, and curated travel packages — all in one interactive map.
+              </p>
+              <Link href="/explore">
+                <Button size="lg" className="bg-amber-500 hover:bg-amber-400 text-emerald-950 font-semibold rounded-full px-8 shadow-lg shadow-amber-500/25">
+                  <MapPin className="mr-2 h-4 w-4" /> Open Interactive Map
+                </Button>
+              </Link>
+            </div>
+            {/* Visual side — mini map preview mockup */}
+            <div className="flex-1 max-w-sm w-full">
+              <div className="relative rounded-3xl overflow-hidden bg-emerald-900/60 border border-white/10 shadow-2xl p-6">
+                {/* Color legend grid */}
+                <div className="grid grid-cols-5 gap-1.5 mb-4">
+                  {[
+                    ["#065f46","#065f46","#1d4ed8","#1d4ed8","#1d4ed8"],
+                    ["#b45309","#065f46","#047857","#7c3aed","#7c3aed"],
+                    ["#b45309","#047857","#047857","#7c3aed","#7c3aed"],
+                    ["#92400e","#92400e","#c2410c","#c2410c","#7c3aed"],
+                    ["#166534","#166534","#0f766e","#0f766e","#0f766e"],
+                  ].map((row, ri) => (
+                    row.map((col, ci) => (
+                      <div
+                        key={`${ri}-${ci}`}
+                        className="h-10 rounded-lg opacity-80 hover:opacity-100 hover:scale-110 transition-all cursor-pointer"
+                        style={{ backgroundColor: col }}
+                      />
+                    ))
+                  ))}
+                </div>
+                <div className="flex flex-wrap gap-1.5">
+                  {["Colombo","Kandy","Galle","Jaffna","Batticaloa","Anuradhapura","Nuwara Eliya","Yala"].map(d => (
+                    <span key={d} className="text-[10px] bg-white/10 border border-white/15 text-white/70 px-2 py-0.5 rounded-full">{d}</span>
+                  ))}
+                </div>
+                <div className="absolute top-3 right-3">
+                  <div className="h-6 w-6 rounded-full bg-amber-400/20 border border-amber-400/40 flex items-center justify-center">
+                    <MapPin className="h-3 w-3 text-amber-400" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
