@@ -4,7 +4,9 @@ import { Button } from "@/components/ui/button";
 import { DestinationsCarousel } from "@/components/public/destinations-carousel";
 import { HeroSlider } from "@/components/public/hero-slider";
 import { PackageCard } from "@/components/public/package-card";
-import { ArrowRight, Award, Users, Map, Shield } from "lucide-react";
+import { SriLankaDistrictMap } from "@/components/public/sri-lanka-map";
+import { HeroSearch } from "@/components/public/hero-search";
+import { ArrowRight, Award, Users, Map, Shield, Binoculars, Waves, Sprout, Mountain, Anchor, Compass } from "lucide-react";
 import Link from "next/link";
 
 // Helper to fetch Hero Config
@@ -104,9 +106,180 @@ export default async function Home() {
         defaultTitle={heroConfig.title}
         defaultImage={heroConfig.image}
       />
+      {/* ── About Us Section (50vh) ─────────────────────────── */}
+      <section className="min-h-[50vh] flex items-center bg-stone-50 relative overflow-hidden">
+        {/* Subtle decorative elements */}
+        <div className="absolute top-0 right-0 w-80 h-80 bg-emerald-100/40 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3" />
+        <div className="absolute bottom-0 left-0 w-64 h-64 bg-amber-100/30 rounded-full blur-3xl translate-y-1/3 -translate-x-1/4" />
+
+        <div className="container mx-auto px-4 md:px-6 relative z-10 py-16">
+          <div className="flex flex-col md:flex-row items-center gap-12 md:gap-16">
+            {/* Text side */}
+            <div className="flex-1 text-center md:text-left">
+              <span className="section-badge">About Travel.lk</span>
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-emerald-950 font-serif mb-5 leading-tight">
+                Crafting Unforgettable<br />
+                <span className="text-amber-600 italic">Sri Lankan</span> Journeys
+              </h2>
+              <p className="text-stone-600 leading-relaxed mb-6 max-w-lg mx-auto md:mx-0">
+                Born from a deep love for this island, Travel.lk connects you with the authentic heart of Sri Lanka — from misty tea estates and ancient ruins to pristine coastlines and vibrant culture. Every itinerary is handcrafted by local experts who know these lands intimately.
+              </p>
+              <div className="flex flex-wrap justify-center md:justify-start gap-6 mb-8">
+                <div className="text-center">
+                  <p className="text-2xl font-bold text-emerald-800 font-serif">10+</p>
+                  <p className="text-[10px] uppercase tracking-wider text-stone-500 font-semibold">Years</p>
+                </div>
+                <div className="w-px h-10 bg-stone-200" />
+                <div className="text-center">
+                  <p className="text-2xl font-bold text-emerald-800 font-serif">5,000+</p>
+                  <p className="text-[10px] uppercase tracking-wider text-stone-500 font-semibold">Guests</p>
+                </div>
+                <div className="w-px h-10 bg-stone-200" />
+                <div className="text-center">
+                  <p className="text-2xl font-bold text-emerald-800 font-serif">25</p>
+                  <p className="text-[10px] uppercase tracking-wider text-stone-500 font-semibold">Districts</p>
+                </div>
+                <div className="w-px h-10 bg-stone-200" />
+                <div className="text-center">
+                  <p className="text-2xl font-bold text-emerald-800 font-serif">120+</p>
+                  <p className="text-[10px] uppercase tracking-wider text-stone-500 font-semibold">Tours</p>
+                </div>
+              </div>
+              <Link href="/about">
+                <Button className="bg-emerald-800 hover:bg-emerald-700 text-white font-semibold rounded-full px-8 shadow-lg">
+                  Learn More About Us <ArrowRight className="ml-2 h-4 w-4" />
+                </Button>
+              </Link>
+            </div>
+
+            {/* Visual side — decorative accent */}
+            <div className="flex-1 max-w-sm w-full hidden md:block">
+              <div className="relative">
+                {/* Decorative frame */}
+                <div className="absolute -inset-3 rounded-3xl bg-gradient-to-br from-emerald-200/40 to-amber-200/40 blur-sm" />
+                <div className="relative rounded-3xl overflow-hidden bg-emerald-950 p-8 shadow-2xl">
+                  <div className="text-center space-y-4">
+                    <div className="h-16 w-16 rounded-full bg-amber-500/20 border border-amber-400/30 flex items-center justify-center mx-auto">
+                      <Map className="h-8 w-8 text-amber-400" />
+                    </div>
+                    <h3 className="text-xl font-bold text-white font-serif">Our Mission</h3>
+                    <p className="text-emerald-200/70 text-sm leading-relaxed">
+                      To share the beauty of Sri Lanka with the world, one unforgettable journey at a time — responsibly, authentically, and with heart.
+                    </p>
+                    <div className="pt-2 flex justify-center gap-2">
+                      {["🌿", "🏛️", "🐘", "🌊", "☕"].map((emoji) => (
+                        <span key={emoji} className="text-lg">{emoji}</span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Explore by Map Teaser ─────────────────────────────── */}
+      <section className="py-20 bg-emerald-950 relative overflow-hidden">
+        <div className="absolute inset-0 opacity-[0.07]" style={{ backgroundImage: "radial-gradient(circle at 1px 1px, #fff 1px, transparent 0)", backgroundSize: "28px 28px" }} />
+        <div className="container mx-auto px-4 md:px-6 relative z-10">
+          <div className="flex flex-col md:flex-row items-center gap-10">
+            <div className="flex-1 text-center md:text-left">
+              <span className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-widest text-amber-400 mb-4">
+                <span className="text-[0.55rem]">✦</span> Interactive Map
+              </span>
+              <h2 className="text-3xl md:text-4xl font-bold text-white font-serif mb-4">
+                Explore All 25 Districts
+              </h2>
+              <p className="text-emerald-200/70 mb-8 max-w-md mx-auto md:mx-0 leading-relaxed">
+                Click on any district to discover its unique highlights, must-see attractions, activities, and curated travel packages — all in one interactive map.
+              </p>
+              <Link href="/explore">
+                <Button size="lg" className="bg-amber-500 hover:bg-amber-400 text-emerald-950 font-semibold rounded-full px-8 shadow-lg shadow-amber-500/25">
+                  <MapPin className="mr-2 h-4 w-4" /> Open Interactive Map
+                </Button>
+              </Link>
+            </div>
+            <div className="flex-1 max-w-xs w-full">
+              <SriLankaDistrictMap compact />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Activities Section ────────────────────────────────── */}
+      <section className="py-24 bg-white relative overflow-hidden">
+        <div className="container mx-auto px-4 md:px-6 relative z-10">
+          <div className="text-center mb-16">
+            <span className="section-badge">Unforgettable Experiences</span>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-emerald-950 font-serif mb-4">
+              Activities in <span className="text-amber-500 italic">Sri Lanka</span>
+            </h2>
+            <p className="text-stone-500 max-w-2xl mx-auto leading-relaxed">
+              From misty peaks to golden shores, discover the endless ways to experience the magic of the island.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[
+              { icon: <Binoculars className="h-6 w-6" />, title: "Wildlife Safari", desc: "Witness leopards, elephants, and rare birds in their natural habitat at Yala or Wilpattu." },
+              { icon: <Waves className="h-6 w-6" />, title: "Surfing & Beaches", desc: "Ride the waves at Arugam Bay or relax on the pristine, palm-fringed sands of Mirissa." },
+              { icon: <Sprout className="h-6 w-6" />, title: "Tea Estate Tours", desc: "Wander through the emerald hills of Nuwara Eliya and learn the art of Ceylon tea-making." },
+              { icon: <Compass className="h-6 w-6" />, title: "Cultural Heritage", desc: "Explore ancient shrines, the Sigiriya rock fortress, and the sacred Temple of the Tooth." },
+              { icon: <Mountain className="h-6 w-6" />, title: "Hiking & Trekking", desc: "Conquer misty trails in Ella or witness the sunrise from the sacred heights of Adam’s Peak." },
+              { icon: <Anchor className="h-6 w-6" />, title: "Whale Watching", desc: "Set sail from Mirissa to encounter the majestic blue whales and playful dolphins." },
+            ].map((activity, idx) => (
+              <div 
+                key={idx} 
+                className="group p-8 rounded-2xl bg-stone-50 border border-stone-100 hover:border-emerald-200 hover:bg-emerald-50/50 transition-all duration-300 hover:shadow-xl hover:shadow-emerald-900/5"
+              >
+                <div className="mb-4 h-12 w-12 rounded-xl bg-white border border-stone-100 flex items-center justify-center text-emerald-700 group-hover:text-amber-600 transition-colors shadow-sm">
+                  {activity.icon}
+                </div>
+                <h3 className="text-xl font-bold text-emerald-900 mb-3 font-serif line-clamp-1">
+                  {activity.title}
+                </h3>
+                <p className="text-stone-500 text-sm leading-relaxed line-clamp-3 group-hover:text-stone-600 transition-colors">
+                  {activity.desc}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Subtle Divider */}
+      <div className="h-px bg-gradient-to-r from-transparent via-amber-400/20 to-transparent" />
+
+
+      {/* ── Search Section ─────────────────────────────────── */}
+      <section className="py-24 relative overflow-hidden bg-emerald-950">
+        {/* Dynamic Background Effects */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(5,150,105,0.15),transparent_70%)]" />
+        <div className="absolute -top-24 -left-24 w-96 h-96 bg-amber-400/10 rounded-full blur-[120px]" />
+        <div className="absolute -bottom-24 -right-24 w-96 h-96 bg-emerald-400/10 rounded-full blur-[120px]" />
+        
+        {/* Dotted pattern matching the Map Section */}
+        <div className="absolute inset-0 opacity-[0.07] pointer-events-none" style={{ backgroundImage: "radial-gradient(circle at 1px 1px, #fff 1px, transparent 0)", backgroundSize: "28px 28px" }} />
+
+
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="text-center mb-10">
+            <span className="inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-[0.3em] text-amber-400 mb-3">
+              <span className="w-10 h-px bg-amber-500/30" />
+              Your Next Discovery
+              <span className="w-10 h-px bg-amber-500/30" />
+            </span>
+            <h2 className="text-3xl md:text-4xl font-bold text-white font-serif italic">
+               Find Your Ideal <span className="text-amber-400">Getaway</span>
+            </h2>
+          </div>
+          <HeroSearch />
+        </div>
+      </section>
 
       {/* ── Destinations Section ─────────────────────────────── */}
-      <section className="pt-36 pb-20 bg-amber-50/40">
+      <section className="py-20 bg-amber-50/40">
         <div className="container mx-auto px-4 md:px-6">
           <div className="flex items-end justify-between mb-10">
             <div>
@@ -129,66 +302,6 @@ export default async function Home() {
             </Button>
           </div>
           <DestinationsCarousel destinations={destinations} />
-        </div>
-      </section>
-
-      {/* ── Explore by Map Teaser ─────────────────────────────── */}
-      <section className="py-20 bg-emerald-950 relative overflow-hidden">
-        {/* Decorative map-dots pattern */}
-        <div className="absolute inset-0 opacity-[0.07]" style={{ backgroundImage: "radial-gradient(circle at 1px 1px, #fff 1px, transparent 0)", backgroundSize: "28px 28px" }} />
-        <div className="container mx-auto px-4 md:px-6 relative z-10">
-          <div className="flex flex-col md:flex-row items-center gap-10">
-            {/* Text side */}
-            <div className="flex-1 text-center md:text-left">
-              <span className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-widest text-amber-400 mb-4">
-                <span className="text-[0.55rem]">✦</span> Interactive Map
-              </span>
-              <h2 className="text-3xl md:text-4xl font-bold text-white font-serif mb-4">
-                Explore All 25 Districts
-              </h2>
-              <p className="text-emerald-200/70 mb-8 max-w-md mx-auto md:mx-0 leading-relaxed">
-                Click on any district to discover its unique highlights, must-see attractions, activities, and curated travel packages — all in one interactive map.
-              </p>
-              <Link href="/explore">
-                <Button size="lg" className="bg-amber-500 hover:bg-amber-400 text-emerald-950 font-semibold rounded-full px-8 shadow-lg shadow-amber-500/25">
-                  <MapPin className="mr-2 h-4 w-4" /> Open Interactive Map
-                </Button>
-              </Link>
-            </div>
-            {/* Visual side — mini map preview mockup */}
-            <div className="flex-1 max-w-sm w-full">
-              <div className="relative rounded-3xl overflow-hidden bg-emerald-900/60 border border-white/10 shadow-2xl p-6">
-                {/* Color legend grid */}
-                <div className="grid grid-cols-5 gap-1.5 mb-4">
-                  {[
-                    ["#065f46","#065f46","#1d4ed8","#1d4ed8","#1d4ed8"],
-                    ["#b45309","#065f46","#047857","#7c3aed","#7c3aed"],
-                    ["#b45309","#047857","#047857","#7c3aed","#7c3aed"],
-                    ["#92400e","#92400e","#c2410c","#c2410c","#7c3aed"],
-                    ["#166534","#166534","#0f766e","#0f766e","#0f766e"],
-                  ].map((row, ri) => (
-                    row.map((col, ci) => (
-                      <div
-                        key={`${ri}-${ci}`}
-                        className="h-10 rounded-lg opacity-80 hover:opacity-100 hover:scale-110 transition-all cursor-pointer"
-                        style={{ backgroundColor: col }}
-                      />
-                    ))
-                  ))}
-                </div>
-                <div className="flex flex-wrap gap-1.5">
-                  {["Colombo","Kandy","Galle","Jaffna","Batticaloa","Anuradhapura","Nuwara Eliya","Yala"].map(d => (
-                    <span key={d} className="text-[10px] bg-white/10 border border-white/15 text-white/70 px-2 py-0.5 rounded-full">{d}</span>
-                  ))}
-                </div>
-                <div className="absolute top-3 right-3">
-                  <div className="h-6 w-6 rounded-full bg-amber-400/20 border border-amber-400/40 flex items-center justify-center">
-                    <MapPin className="h-3 w-3 text-amber-400" />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
       </section>
 
@@ -278,7 +391,7 @@ export default async function Home() {
           backgroundSize: "12px 12px"
         }} />
 
-        <div className="container px-4 relative z-10 text-center">
+        <div className="container mx-auto px-4 relative z-10 text-center">
           <span className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-widest text-amber-400 mb-4">
             <span className="text-[0.55rem]">✦</span> Start Your Adventure
           </span>
@@ -288,15 +401,15 @@ export default async function Home() {
           <p className="text-emerald-100/80 mb-10 max-w-2xl mx-auto text-lg">
             Subscribe for exclusive travel offers, hidden gems, and curated itineraries delivered to your inbox.
           </p>
-          <div className="flex max-w-md mx-auto gap-2">
+          <div className="flex flex-col sm:flex-row max-w-lg mx-auto gap-3 items-center justify-center">
             <input
               type="email"
               placeholder="Your email address"
-              className="flex-1 h-12 px-5 rounded-full text-gray-900 bg-white focus:outline-none focus:ring-2 focus:ring-amber-400 shadow-lg text-sm"
+              className="w-full sm:flex-1 h-14 px-6 rounded-full text-gray-900 bg-white focus:outline-none focus:ring-2 focus:ring-amber-400 shadow-xl text-sm transition-all"
             />
             <Button
               size="lg"
-              className="bg-amber-500 hover:bg-amber-400 text-emerald-950 font-bold rounded-full px-6 shadow-lg shadow-amber-500/20 shrink-0"
+              className="w-full sm:w-auto h-14 bg-amber-500 hover:bg-amber-400 text-emerald-950 font-bold rounded-full px-10 shadow-xl shadow-amber-500/20 shrink-0 transition-all active:scale-95"
             >
               Subscribe
             </Button>

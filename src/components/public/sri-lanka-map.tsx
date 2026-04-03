@@ -76,7 +76,11 @@ const districtData: Record<string, {
   Kegalle:       { tagline: "Pinnawala Elephant Country", highlights: ["Elephant Orphanage", "Batik Villages", "Rubber Estates", "Waterways"], icon: Camera, bestFor: "Elephant Encounter" },
 };
 
-export function SriLankaDistrictMap() {
+interface MapProps {
+  compact?: boolean;
+}
+
+export function SriLankaDistrictMap({ compact = false }: MapProps) {
   const [hoveredDistrict, setHoveredDistrict] = useState("");
   const [selectedDistrict, setSelectedDistrict] = useState<string | null>(null);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
@@ -93,6 +97,157 @@ export function SriLankaDistrictMap() {
     { label: "Districts", value: "25", icon: MapPin },
     { label: "Population", value: "22M", icon: Users },
   ];
+
+  // Compact mode: just the map + overlays, no page wrapper
+  if (compact) {
+    return (
+      <div className="relative w-full" onMouseMove={handleMouseMove}>
+        <div className="w-full max-w-[280px] mx-auto">
+          <ComposableMap
+            projection="geoMercator"
+            projectionConfig={{ scale: 5900, center: [80.7, 7.45] }}
+            width={300}
+            height={480}
+            style={{ width: "100%", height: "auto" }}
+          >
+            <Geographies geography={geoUrl}>
+              {({ geographies }: { geographies: any[] }) =>
+                geographies.map((geo: any) => {
+                  const gadmName: string = geo.properties.NAME_1;
+                  const province = districtProvince[gadmName] ?? "Western";
+                  const baseColor = provinceColors[province] ?? "#065f46";
+                  const isHovered = hoveredDistrict === gadmName;
+                  const isSelected = selectedDistrict === gadmName;
+                  return (
+                    <Geography
+                      key={geo.rsmKey}
+                      geography={geo}
+                      onMouseEnter={() => setHoveredDistrict(gadmName)}
+                      onMouseLeave={() => setHoveredDistrict("")}
+                      onClick={() => setSelectedDistrict(gadmName)}
+                      fill={isSelected ? "#f59e0b" : isHovered ? "#fbbf24" : baseColor}
+                      stroke="rgba(255,255,255,0.25)"
+                      strokeWidth={0.5}
+                      style={{
+                        default: { outline: "none", transition: "all 0.25s ease" },
+                        hover: { outline: "none", cursor: "pointer", filter: "brightness(1.25)", strokeWidth: 0.8 },
+                        pressed: { outline: "none" },
+                      }}
+                    />
+                  );
+                })
+              }
+            </Geographies>
+          </ComposableMap>
+        </div>
+
+        {/* Hover Tooltip */}
+        <AnimatePresence>
+          {hoveredDistrict && !selectedDistrict && (
+            <motion.div
+              key="tooltip-compact"
+              initial={{ opacity: 0, scale: 0.85, y: 6 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.85, y: 6 }}
+              transition={{ duration: 0.12 }}
+              className="fixed z-[60] pointer-events-none hidden md:block"
+              style={{ left: mousePos.x + 16, top: mousePos.y - 56 }}
+            >
+              <div className="bg-emerald-950/95 backdrop-blur-xl border border-white/15 text-white px-3 py-2 rounded-xl shadow-2xl">
+                <p className="font-bold text-xs font-serif">{getDisplayName(hoveredDistrict)}</p>
+                <p className="text-[9px] text-amber-400/90 font-medium">
+                  {districtData[hoveredDistrict]?.tagline ?? ""}
+                </p>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        {/* Detail Overlay (same full-screen overlay) */}
+        <AnimatePresence>
+          {selectedDistrict && selectedData && (
+            <motion.div
+              key="overlay-compact"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              className="fixed inset-0 z-50 flex flex-col items-center justify-center p-4 sm:p-6 md:p-10 overflow-y-auto"
+              style={{
+                background: "rgba(6, 30, 20, 0.6)",
+                backdropFilter: "blur(20px)",
+                WebkitBackdropFilter: "blur(20px)",
+              }}
+              onClick={() => setSelectedDistrict(null)}
+            >
+              <motion.p
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2 }}
+                className="text-white/40 text-[10px] uppercase tracking-widest mb-4 shrink-0"
+              >
+                Tap anywhere to close
+              </motion.p>
+              <div
+                className="w-full max-w-4xl grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <motion.div
+                  initial={{ opacity: 0, rotateY: -90, scale: 0.7 }}
+                  animate={{ opacity: 1, rotateY: 0, scale: 1 }}
+                  exit={{ opacity: 0, rotateY: 90, scale: 0.7 }}
+                  transition={{ duration: 0.55, type: "spring", stiffness: 100 }}
+                  className="col-span-2 md:col-span-1 md:row-span-2 bg-white/12 backdrop-blur-2xl border border-white/20 rounded-2xl sm:rounded-3xl p-5 sm:p-7 shadow-2xl flex flex-col justify-between"
+                >
+                  <div>
+                    <div className="h-12 w-12 rounded-xl bg-white/10 border border-amber-400/30 flex items-center justify-center mb-4">
+                      <SelectedIcon className="h-6 w-6 text-amber-400" />
+                    </div>
+                    <p className="text-[10px] font-semibold uppercase tracking-widest text-amber-400 mb-1">{selectedData.bestFor}</p>
+                    <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white font-serif mb-1">{getDisplayName(selectedDistrict)}</h2>
+                    <p className="text-emerald-200/70 text-sm">{selectedData.tagline}</p>
+                  </div>
+                  <Link
+                    href={`/packages?destination=${getDisplayName(selectedDistrict).toLowerCase()}`}
+                    onClick={() => setSelectedDistrict(null)}
+                    className="mt-5 inline-flex items-center gap-2 bg-amber-500 hover:bg-amber-400 text-emerald-950 font-semibold rounded-full px-5 py-2.5 text-sm transition-colors shadow-lg w-fit"
+                  >
+                    View Packages <ArrowRight className="h-4 w-4" />
+                  </Link>
+                </motion.div>
+                {selectedData.highlights.map((highlight, i) => (
+                  <motion.div
+                    key={highlight}
+                    initial={{ opacity: 0, rotateY: 90, scale: 0.6 }}
+                    animate={{ opacity: 1, rotateY: 0, scale: 1 }}
+                    exit={{ opacity: 0, rotateY: -90, scale: 0.6 }}
+                    transition={{ duration: 0.5, delay: 0.08 * (i + 1), type: "spring", stiffness: 110 }}
+                    className="bg-white/8 backdrop-blur-xl border border-white/12 rounded-xl sm:rounded-2xl p-4 sm:p-5 shadow-xl hover:bg-white/14 hover:border-amber-400/30 transition-all cursor-default"
+                  >
+                    <div className="h-7 w-7 rounded-lg bg-amber-500/15 border border-amber-400/25 flex items-center justify-center mb-2">
+                      <MapPin className="h-3.5 w-3.5 text-amber-400" />
+                    </div>
+                    <p className="text-white font-semibold font-serif text-sm sm:text-base">{highlight}</p>
+                    <p className="text-white/30 text-[9px] uppercase tracking-wider mt-1">Must Visit</p>
+                  </motion.div>
+                ))}
+              </div>
+              <motion.button
+                initial={{ opacity: 0, scale: 0.7 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.7 }}
+                transition={{ delay: 0.4 }}
+                onClick={() => setSelectedDistrict(null)}
+                className="mt-5 h-10 w-10 rounded-full bg-white/10 border border-white/20 text-white hover:bg-white/20 transition-all flex items-center justify-center shrink-0"
+              >
+                <X className="h-4 w-4" />
+              </motion.button>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
+    );
+  }
 
   return (
     <div
@@ -134,13 +289,13 @@ export function SriLankaDistrictMap() {
 
       {/* ── Map ── */}
       <div className="relative z-10 flex-1 flex items-center justify-center px-2 sm:px-4 py-4 min-h-0">
-        <div className="w-full max-w-lg mx-auto" style={{ aspectRatio: "3/4" }}>
+        <div className="w-full max-w-lg mx-auto" style={{ aspectRatio: "3/5" }}>
           <ComposableMap
             projection="geoMercator"
-            projectionConfig={{ scale: 8000, center: [80.7, 7.85] }}
+            projectionConfig={{ scale: 7500, center: [80.7, 7.6] }}
             className="w-full h-full"
             width={400}
-            height={530}
+            height={620}
             style={{ width: "100%", height: "100%" }}
           >
             <Geographies geography={geoUrl}>

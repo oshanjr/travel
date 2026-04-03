@@ -101,13 +101,13 @@ export function Navbar({ session }: { session: any }) {
                     </Link>
 
                     {/* Desktop Nav */}
-                    <nav className="hidden md:flex items-center gap-7 mx-auto">
+                    <nav className="hidden md:flex items-center gap-8 flex-1 justify-center px-4">
                         {routes.map((route) => (
                             <Link
                                 key={route.href}
                                 href={route.href}
                                 className={cn(
-                                    "text-sm font-medium transition-colors relative pb-0.5",
+                                    "text-sm font-medium transition-colors relative pb-0.5 whitespace-nowrap",
                                     styles.text,
                                     pathname === route.href && "text-amber-400 font-semibold"
                                 )}
