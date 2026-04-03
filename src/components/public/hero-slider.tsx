@@ -9,7 +9,6 @@ import {
 } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
 import { HeroSlide } from "@prisma/client";
-import { HeroSearch } from "@/components/public/hero-search";
 import { ChevronDown } from "lucide-react";
 
 interface HeroSliderProps {
@@ -27,25 +26,18 @@ export function HeroSlider({ slides, defaultTitle, defaultImage }: HeroSliderPro
         window.scrollBy({ top: window.innerHeight * 0.9, behavior: "smooth" });
     };
 
-    // Shared premium overlays
     const PremiumOverlays = () => (
         <>
-            {/* Cinematic vignette */}
             <div className="absolute inset-0 vignette-warm" />
-            {/* Top fade for navbar */}
             <div className="absolute inset-0 bg-gradient-to-b from-emerald-950/60 via-emerald-950/10 to-transparent" />
-            {/* Bottom fade for search widget */}
             <div className="absolute inset-0 bg-gradient-to-t from-emerald-950/50 via-transparent to-transparent" />
-            {/* Side vignette for cinematic look */}
             <div className="absolute inset-0" style={{
                 background: "radial-gradient(ellipse at center, transparent 50%, rgba(6,30,20,0.4) 100%)"
             }} />
-            {/* Subtle gold shimmer line at bottom */}
             <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-amber-400/30 to-transparent" />
         </>
     );
 
-    // Shared scroll indicator
     const ScrollIndicator = () => (
         <button
             onClick={scrollDown}
@@ -84,23 +76,30 @@ export function HeroSlider({ slides, defaultTitle, defaultImage }: HeroSliderPro
                         Pristine beaches · Misty highlands · Timeless heritage
                     </p>
                 </div>
-
                 <ScrollIndicator />
             </div>
         );
     }
 
     return (
-        <div className="relative h-screen w-full bg-emerald-950 text-white overflow-hidden">
+        <div className="relative h-screen w-full bg-emerald-950 text-white overflow-x-hidden">
             <Carousel
                 plugins={[plugin.current]}
                 className="w-full h-full"
-                opts={{ loop: true, duration: 60 }}
+                opts={{ loop: true, duration: 60, align: "center" }}
             >
-                {/* Changed: Added !ml-0 and flex to enforce proper layout and override Shadcn margins */}
-                <CarouselContent className="h-screen !ml-0 flex">
+                <CarouselContent className="h-screen flex" style={{ marginLeft: "0px" }}>
                     {slides.map((slide, index) => (
-                        <CarouselItem key={slide.id} className="relative w-full h-full !pl-0 min-w-0 shrink-0 grow-0 basis-full">
+                        <CarouselItem 
+                            key={slide.id} 
+                            className="relative h-full shrink-0 grow-0"
+                            style={{ 
+                                paddingLeft: "0px", 
+                                flex: "0 0 100%", 
+                                minWidth: "100%",
+                                maxWidth: "100%" 
+                            }}
+                        >
                             <div className="absolute inset-0">
                                 <Image
                                     src={slide.image}
