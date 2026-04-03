@@ -97,9 +97,10 @@ export function HeroSlider({ slides, defaultTitle, defaultImage }: HeroSliderPro
                 className="w-full h-full"
                 opts={{ loop: true, duration: 60 }}
             >
-                <CarouselContent className="h-screen ml-0">
+                {/* Changed: Added !ml-0 and flex to enforce proper layout and override Shadcn margins */}
+                <CarouselContent className="h-screen !ml-0 flex">
                     {slides.map((slide, index) => (
-                        <CarouselItem key={slide.id} className="relative w-full h-full pl-0">
+                        <CarouselItem key={slide.id} className="relative w-full h-full !pl-0 min-w-0 shrink-0 grow-0 basis-full">
                             <div className="absolute inset-0">
                                 <Image
                                     src={slide.image}
