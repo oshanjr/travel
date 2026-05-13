@@ -40,7 +40,7 @@ export function BookingCard({ price, user, packageId, packageSlug }: BookingCard
     };
 
     return (
-        <Card className="sticky top-24 shadow-xl border-t-4 border-t-blue-600">
+        <Card className="sticky top-24 shadow-xl border-t-4 border-t-amber-600">
             <CardHeader>
                 <div className="text-sm text-gray-500 font-medium">Starting from</div>
                 <div className="flex items-baseline gap-1">
@@ -100,7 +100,7 @@ export function BookingCard({ price, user, packageId, packageSlug }: BookingCard
             <CardFooter>
                 <Button
                     size="lg"
-                    className="w-full bg-blue-600 hover:bg-blue-700 text-lg py-6"
+                    className="w-full bg-amber-600 hover:bg-amber-700 text-lg py-6"
                     onClick={handleBookNow}
                 >
                     Book Now

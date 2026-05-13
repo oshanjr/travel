@@ -19,15 +19,15 @@ const districtProvince: Record<string, string> = {
 };
 
 const provinceColors: Record<string, string> = {
-  "Western": "#065f46", "Central": "#047857", "Southern": "#0f766e",
-  "Northern": "#1d4ed8", "Eastern": "#7c3aed", "North Western": "#b45309",
-  "North Central": "#92400e", "Uva": "#c2410c", "Sabaragamuwa": "#166534",
+  "Western": "#D4AF37", "Central": "#B8860B", "Southern": "#C5B358",
+  "Northern": "#E6C280", "Eastern": "#F3E5AB", "North Western": "#C5A059",
+  "North Central": "#DAA520", "Uva": "#F5DEB3", "Sabaragamuwa": "#E8D8A6",
 };
 
 export function MiniMap() {
   return (
     <Link href="/explore" className="block group">
-      <div className="relative rounded-3xl overflow-hidden bg-emerald-900/40 border border-white/10 shadow-2xl hover:shadow-amber-500/10 hover:border-amber-400/30 transition-all duration-500 p-4">
+      <div className="relative rounded-3xl overflow-hidden bg-stone-900/40 border border-white/10 shadow-2xl hover:shadow-amber-500/10 hover:border-amber-400/30 transition-all duration-500 p-4">
         <div className="w-full max-w-[280px] mx-auto">
           <ComposableMap
             projection="geoMercator"
@@ -40,7 +40,7 @@ export function MiniMap() {
               {({ geographies }: { geographies: any[] }) =>
                 geographies.map((geo: any) => {
                   const province = districtProvince[geo.properties.NAME_1] ?? "Western";
-                  const color = provinceColors[province] ?? "#065f46";
+                  const color = provinceColors[province] ?? "#D4AF37";
                   return (
                     <Geography
                       key={geo.rsmKey}
@@ -62,7 +62,7 @@ export function MiniMap() {
         </div>
         {/* Hover overlay */}
         <div className="absolute inset-0 bg-amber-400/0 group-hover:bg-amber-400/5 transition-colors rounded-3xl flex items-end justify-center pb-4">
-          <span className="text-[10px] uppercase tracking-widest font-semibold text-white/0 group-hover:text-white/80 transition-colors bg-emerald-950/80 backdrop-blur-sm px-3 py-1.5 rounded-full border border-white/10">
+          <span className="text-[10px] uppercase tracking-widest font-semibold text-white/0 group-hover:text-white/80 transition-colors bg-stone-950/80 backdrop-blur-sm px-3 py-1.5 rounded-full border border-white/10">
             Click to Explore →
           </span>
         </div>

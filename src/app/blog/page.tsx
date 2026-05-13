@@ -3,7 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 
 export const metadata: Metadata = {
-    title: "Travel Blog | Travel.lk",
+    title: "Travel Blog | A&S Pearl Lanka Tours",
     description: "Read the latest tips, guides, and stories about traveling in Sri Lanka.",
 };
 
@@ -63,14 +63,14 @@ export default function BlogPage() {
                                     <span>By {post.author}</span>
                                 </div>
                                 <h2 className="text-2xl font-bold text-slate-900 mb-3 line-clamp-2">
-                                    <Link href={`/blog/${post.id}`} className="hover:text-blue-600 transition">
+                                    <Link href={`/blog/${post.id}`} className="hover:text-amber-600 transition">
                                         {post.title}
                                     </Link>
                                 </h2>
                                 <p className="text-slate-600 mb-4 line-clamp-3">
                                     {post.excerpt}
                                 </p>
-                                <Link href={`/blog/${post.id}`} className="text-blue-600 font-semibold hover:text-blue-800 transition flex items-center gap-1">
+                                <Link href={`/blog/${post.id}`} className="text-amber-600 font-semibold hover:text-amber-800 transition flex items-center gap-1">
                                     Read Full Story <span aria-hidden="true">&rarr;</span>
                                 </Link>
                             </div>

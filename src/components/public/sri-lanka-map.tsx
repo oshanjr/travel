@@ -24,15 +24,15 @@ const districtProvince: Record<string, string> = {
 
 // Province → color
 const provinceColors: Record<string, string> = {
-  "Western":       "#065f46",
-  "Central":       "#047857",
-  "Southern":      "#0f766e",
-  "Northern":      "#1d4ed8",
-  "Eastern":       "#7c3aed",
-  "North Western": "#b45309",
-  "North Central": "#92400e",
-  "Uva":           "#c2410c",
-  "Sabaragamuwa":  "#166534",
+  "Western":       "#D4AF37",
+  "Central":       "#B8860B",
+  "Southern":      "#C5B358",
+  "Northern":      "#E6C280",
+  "Eastern":       "#F3E5AB",
+  "North Western": "#C5A059",
+  "North Central": "#DAA520",
+  "Uva":           "#F5DEB3",
+  "Sabaragamuwa":  "#E8D8A6",
 };
 
 // Display name mapping (GADM key → display name)
@@ -115,7 +115,7 @@ export function SriLankaDistrictMap({ compact = false }: MapProps) {
                 geographies.map((geo: any) => {
                   const gadmName: string = geo.properties.NAME_1;
                   const province = districtProvince[gadmName] ?? "Western";
-                  const baseColor = provinceColors[province] ?? "#065f46";
+                  const baseColor = provinceColors[province] ?? "#D4AF37";
                   const isHovered = hoveredDistrict === gadmName;
                   const isSelected = selectedDistrict === gadmName;
                   return (
@@ -153,7 +153,7 @@ export function SriLankaDistrictMap({ compact = false }: MapProps) {
               className="fixed z-[60] pointer-events-none hidden md:block"
               style={{ left: mousePos.x + 16, top: mousePos.y - 56 }}
             >
-              <div className="bg-emerald-950/95 backdrop-blur-xl border border-white/15 text-white px-3 py-2 rounded-xl shadow-2xl">
+              <div className="bg-stone-950/95 backdrop-blur-xl border border-white/15 text-white px-3 py-2 rounded-xl shadow-2xl">
                 <p className="font-bold text-xs font-serif">{getDisplayName(hoveredDistrict)}</p>
                 <p className="text-[9px] text-amber-400/90 font-medium">
                   {districtData[hoveredDistrict]?.tagline ?? ""}
@@ -174,7 +174,7 @@ export function SriLankaDistrictMap({ compact = false }: MapProps) {
               transition={{ duration: 0.3 }}
               className="fixed inset-0 z-50 flex flex-col items-center justify-center p-4 sm:p-6 md:p-10 overflow-y-auto"
               style={{
-                background: "rgba(6, 30, 20, 0.6)",
+                background: "rgba(30, 25, 15, 0.7)",
                 backdropFilter: "blur(20px)",
                 WebkitBackdropFilter: "blur(20px)",
               }}
@@ -205,12 +205,12 @@ export function SriLankaDistrictMap({ compact = false }: MapProps) {
                     </div>
                     <p className="text-[10px] font-semibold uppercase tracking-widest text-amber-400 mb-1">{selectedData.bestFor}</p>
                     <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white font-serif mb-1">{getDisplayName(selectedDistrict)}</h2>
-                    <p className="text-emerald-200/70 text-sm">{selectedData.tagline}</p>
+                    <p className="text-stone-200/70 text-sm">{selectedData.tagline}</p>
                   </div>
                   <Link
                     href={`/packages?destination=${getDisplayName(selectedDistrict).toLowerCase()}`}
                     onClick={() => setSelectedDistrict(null)}
-                    className="mt-5 inline-flex items-center gap-2 bg-amber-500 hover:bg-amber-400 text-emerald-950 font-semibold rounded-full px-5 py-2.5 text-sm transition-colors shadow-lg w-fit"
+                    className="mt-5 inline-flex items-center gap-2 bg-amber-500 hover:bg-amber-400 text-stone-950 font-semibold rounded-full px-5 py-2.5 text-sm transition-colors shadow-lg w-fit"
                   >
                     View Packages <ArrowRight className="h-4 w-4" />
                   </Link>
@@ -251,7 +251,7 @@ export function SriLankaDistrictMap({ compact = false }: MapProps) {
 
   return (
     <div
-      className="relative w-full min-h-screen bg-gradient-to-br from-emerald-950 via-emerald-900 to-stone-900 flex flex-col overflow-hidden"
+      className="relative w-full min-h-screen bg-gradient-to-br from-stone-950 via-stone-900 to-stone-900 flex flex-col overflow-hidden"
       onMouseMove={handleMouseMove}
     >
       {/* Dot pattern */}
@@ -268,7 +268,7 @@ export function SriLankaDistrictMap({ compact = false }: MapProps) {
         <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white font-serif mb-2">
           Explore Sri Lanka
         </h1>
-        <p className="text-emerald-200/60 text-sm max-w-md mx-auto">
+        <p className="text-stone-200/60 text-sm max-w-md mx-auto">
           Click any district to discover its highlights and travel packages.
         </p>
       </div>
@@ -303,7 +303,7 @@ export function SriLankaDistrictMap({ compact = false }: MapProps) {
                 geographies.map((geo: any) => {
                   const gadmName: string = geo.properties.NAME_1;
                   const province = districtProvince[gadmName] ?? "Western";
-                  const baseColor = provinceColors[province] ?? "#065f46";
+                  const baseColor = provinceColors[province] ?? "#D4AF37";
                   const isHovered = hoveredDistrict === gadmName;
                   const isSelected = selectedDistrict === gadmName;
 
@@ -353,7 +353,7 @@ export function SriLankaDistrictMap({ compact = false }: MapProps) {
             className="fixed z-[60] pointer-events-none hidden md:block"
             style={{ left: mousePos.x + 16, top: mousePos.y - 56 }}
           >
-            <div className="bg-emerald-950/95 backdrop-blur-xl border border-white/15 text-white px-4 py-2.5 rounded-xl shadow-2xl">
+            <div className="bg-stone-950/95 backdrop-blur-xl border border-white/15 text-white px-4 py-2.5 rounded-xl shadow-2xl">
               <p className="font-bold text-sm font-serif">{getDisplayName(hoveredDistrict)}</p>
               <p className="text-[10px] text-amber-400/90 font-medium">
                 {districtData[hoveredDistrict]?.tagline ?? ""}
@@ -374,7 +374,7 @@ export function SriLankaDistrictMap({ compact = false }: MapProps) {
             transition={{ duration: 0.3 }}
             className="fixed inset-0 z-50 flex flex-col items-center justify-center p-4 sm:p-6 md:p-10 overflow-y-auto"
             style={{
-              background: "rgba(6, 30, 20, 0.6)",
+              background: "rgba(30, 25, 15, 0.7)",
               backdropFilter: "blur(20px)",
               WebkitBackdropFilter: "blur(20px)",
             }}
@@ -411,12 +411,12 @@ export function SriLankaDistrictMap({ compact = false }: MapProps) {
                   <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white font-serif mb-1">
                     {getDisplayName(selectedDistrict)}
                   </h2>
-                  <p className="text-emerald-200/70 text-sm">{selectedData.tagline}</p>
+                  <p className="text-stone-200/70 text-sm">{selectedData.tagline}</p>
                 </div>
                 <Link
                   href={`/packages?destination=${getDisplayName(selectedDistrict).toLowerCase()}`}
                   onClick={() => setSelectedDistrict(null)}
-                  className="mt-5 inline-flex items-center gap-2 bg-amber-500 hover:bg-amber-400 text-emerald-950 font-semibold rounded-full px-5 py-2.5 text-sm transition-colors shadow-lg w-fit"
+                  className="mt-5 inline-flex items-center gap-2 bg-amber-500 hover:bg-amber-400 text-stone-950 font-semibold rounded-full px-5 py-2.5 text-sm transition-colors shadow-lg w-fit"
                 >
                   View Packages <ArrowRight className="h-4 w-4" />
                 </Link>

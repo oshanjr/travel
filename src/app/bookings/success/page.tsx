@@ -19,7 +19,7 @@ export default function BookingSuccessPage({ searchParams }: { searchParams: { i
 
                 <div className="space-y-3">
                     <Link href="/profile">
-                        <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white rounded-xl h-12">
+                        <Button className="w-full bg-amber-600 hover:bg-amber-700 text-white rounded-xl h-12">
                             View My Bookings
                         </Button>
                     </Link>

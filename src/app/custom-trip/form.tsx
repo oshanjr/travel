@@ -109,7 +109,7 @@ export function CustomTripForm() {
         return (
             <Card className="border-none shadow-xl bg-white/80 backdrop-blur-sm">
                 <CardContent className="pt-10 pb-10 flex flex-col items-center justify-center text-center space-y-4">
-                    <div className="w-16 h-16 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mb-4">
+                    <div className="w-16 h-16 bg-amber-100 text-amber-600 rounded-full flex items-center justify-center mb-4">
                         <Check className="w-8 h-8" />
                     </div>
                     <h2 className="text-2xl font-bold text-slate-900">Request Received!</h2>
@@ -129,7 +129,7 @@ export function CustomTripForm() {
     }
 
     return (
-        <Card className="border-none shadow-xl bg-white/80 backdrop-blur-sm border-t-4 border-t-blue-600">
+        <Card className="border-none shadow-xl bg-white/80 backdrop-blur-sm border-t-4 border-t-amber-600">
             <CardContent className="pt-8">
                 <Form {...form}>
                     <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
@@ -261,7 +261,7 @@ export function CustomTripForm() {
                                                 <Badge
                                                     key={dest}
                                                     variant="secondary"
-                                                    className="bg-blue-100 text-blue-800 hover:bg-blue-200 cursor-pointer"
+                                                    className="bg-amber-100 text-amber-800 hover:bg-amber-200 cursor-pointer"
                                                     onClick={() => {
                                                         form.setValue(
                                                             "destinations",
@@ -346,7 +346,7 @@ export function CustomTripForm() {
 
                         <Button
                             type="submit"
-                            className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold h-12 text-lg rounded-xl shadow-lg hover:shadow-xl transition-all"
+                            className="w-full bg-amber-600 hover:bg-amber-700 text-white font-semibold h-12 text-lg rounded-xl shadow-lg hover:shadow-xl transition-all"
                             disabled={isSubmitting}
                         >
                             {isSubmitting ? (

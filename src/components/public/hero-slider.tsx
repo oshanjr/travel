@@ -29,10 +29,10 @@ export function HeroSlider({ slides, defaultTitle, defaultImage }: HeroSliderPro
     const PremiumOverlays = () => (
         <>
             <div className="absolute inset-0 vignette-warm" />
-            <div className="absolute inset-0 bg-gradient-to-b from-emerald-950/60 via-emerald-950/10 to-transparent" />
-            <div className="absolute inset-0 bg-gradient-to-t from-emerald-950/50 via-transparent to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-b from-stone-950/60 via-stone-950/10 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-stone-950/50 via-transparent to-transparent" />
             <div className="absolute inset-0" style={{
-                background: "radial-gradient(ellipse at center, transparent 50%, rgba(6,30,20,0.4) 100%)"
+                background: "radial-gradient(ellipse at center, transparent 50%, rgba(40,30,20,0.5) 100%)"
             }} />
             <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-amber-400/30 to-transparent" />
         </>
@@ -51,7 +51,7 @@ export function HeroSlider({ slides, defaultTitle, defaultImage }: HeroSliderPro
 
     if (!slides || slides.length === 0) {
         return (
-            <div className="relative h-screen w-full flex items-center justify-center bg-emerald-950 text-white overflow-hidden">
+            <div className="relative h-screen w-full flex items-center justify-center bg-stone-950 text-white overflow-hidden">
                 <div className="absolute inset-0">
                     <Image
                         src={defaultImage || "/hero-bg.jpg"}
@@ -82,7 +82,7 @@ export function HeroSlider({ slides, defaultTitle, defaultImage }: HeroSliderPro
     }
 
     return (
-        <div className="relative h-screen w-full bg-emerald-950 text-white overflow-x-hidden">
+        <div className="relative h-screen w-full bg-stone-950 text-white overflow-x-hidden">
             <Carousel
                 plugins={[plugin.current]}
                 className="w-full h-full"
@@ -92,7 +92,7 @@ export function HeroSlider({ slides, defaultTitle, defaultImage }: HeroSliderPro
                     {slides.map((slide, index) => (
                         <CarouselItem 
                             key={slide.id} 
-                            className="relative h-full shrink-0 grow-0"
+                            className="relative h-full shrink-0 grow-0 overflow-hidden"
                             style={{ 
                                 paddingLeft: "0px", 
                                 flex: "0 0 100%", 

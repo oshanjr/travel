@@ -12,7 +12,7 @@ const usefulLinks = [
 
 export function Footer() {
     return (
-        <footer className="bg-emerald-950 text-white relative overflow-hidden">
+        <footer className="bg-stone-950 text-white relative overflow-hidden">
             {/* Gold top border */}
             <div className="h-px w-full bg-gradient-to-r from-transparent via-amber-500/60 to-transparent" />
 
@@ -32,27 +32,27 @@ export function Footer() {
                     <div className="space-y-5 lg:col-span-1">
                         <Link href="/" className="inline-flex items-center gap-2">
                             <div className="h-8 w-8 rounded-full bg-gradient-to-br from-amber-400 to-amber-600 flex items-center justify-center shadow">
-                                <span className="text-emerald-950 font-bold text-xs">T</span>
+                                <span className="text-stone-950 font-bold text-xs">T</span>
                             </div>
                             <span className="text-2xl font-bold">
-                                Travel<span className="text-amber-400">.lk</span>
+                                A&S Pearl Lanka <span className="text-amber-400">Tours</span>
                             </span>
                         </Link>
-                        <p className="text-emerald-300/70 text-sm leading-relaxed">
+                        <p className="text-stone-300/70 text-sm leading-relaxed">
                             Discover the wonders of Sri Lanka with our curated travel experiences.
                             From pristine beaches to misty mountains — we make every journey unforgettable.
                         </p>
                         <div className="flex gap-3 pt-1">
-                            <Link href="#" className="h-9 w-9 rounded-full bg-white/8 border border-white/10 flex items-center justify-center text-emerald-300 hover:text-amber-400 hover:border-amber-400/40 hover:bg-amber-400/10 transition-all">
+                            <Link href="#" className="h-9 w-9 rounded-full bg-white/8 border border-white/10 flex items-center justify-center text-stone-300 hover:text-amber-400 hover:border-amber-400/40 hover:bg-amber-400/10 transition-all">
                                 <Facebook className="h-4 w-4" />
                             </Link>
-                            <Link href="#" className="h-9 w-9 rounded-full bg-white/8 border border-white/10 flex items-center justify-center text-emerald-300 hover:text-amber-400 hover:border-amber-400/40 hover:bg-amber-400/10 transition-all">
+                            <Link href="#" className="h-9 w-9 rounded-full bg-white/8 border border-white/10 flex items-center justify-center text-stone-300 hover:text-amber-400 hover:border-amber-400/40 hover:bg-amber-400/10 transition-all">
                                 <Instagram className="h-4 w-4" />
                             </Link>
-                            <Link href="#" className="h-9 w-9 rounded-full bg-white/8 border border-white/10 flex items-center justify-center text-emerald-300 hover:text-amber-400 hover:border-amber-400/40 hover:bg-amber-400/10 transition-all">
+                            <Link href="#" className="h-9 w-9 rounded-full bg-white/8 border border-white/10 flex items-center justify-center text-stone-300 hover:text-amber-400 hover:border-amber-400/40 hover:bg-amber-400/10 transition-all">
                                 <Twitter className="h-4 w-4" />
                             </Link>
-                            <Link href="#" className="h-9 w-9 rounded-full bg-white/8 border border-white/10 flex items-center justify-center text-emerald-300 hover:text-amber-400 hover:border-amber-400/40 hover:bg-amber-400/10 transition-all">
+                            <Link href="#" className="h-9 w-9 rounded-full bg-white/8 border border-white/10 flex items-center justify-center text-stone-300 hover:text-amber-400 hover:border-amber-400/40 hover:bg-amber-400/10 transition-all">
                                 <Youtube className="h-4 w-4" />
                             </Link>
                         </div>
@@ -63,7 +63,7 @@ export function Footer() {
                         <h3 className="font-semibold text-base mb-5 text-white tracking-wide uppercase text-xs">
                             Quick Links
                         </h3>
-                        <ul className="space-y-3 text-sm text-emerald-300/80">
+                        <ul className="space-y-3 text-sm text-stone-300/80">
                             <li><Link href="/" className="hover:text-amber-400 transition-colors">Home</Link></li>
                             <li><Link href="/packages" className="hover:text-amber-400 transition-colors">Packages</Link></li>
                             <li><Link href="/about" className="hover:text-amber-400 transition-colors">About Us</Link></li>
@@ -78,7 +78,7 @@ export function Footer() {
                         <h3 className="font-semibold text-base mb-5 text-white tracking-wide uppercase text-xs">
                             Contact Us
                         </h3>
-                        <ul className="space-y-4 text-sm text-emerald-300/80">
+                        <ul className="space-y-4 text-sm text-stone-300/80">
                             <li className="flex items-start gap-3">
                                 <MapPin className="h-4 w-4 text-amber-400 shrink-0 mt-0.5" />
                                 <span>123 Temple Road, Colombo 03, Sri Lanka</span>
@@ -89,7 +89,7 @@ export function Footer() {
                             </li>
                             <li className="flex items-center gap-3">
                                 <Mail className="h-4 w-4 text-amber-400 shrink-0" />
-                                <a href="mailto:hello@travel.lk" className="hover:text-amber-400 transition-colors">hello@travel.lk</a>
+                                <a href="mailto:info@aspearllankatours.com" className="hover:text-amber-400 transition-colors">info@aspearllankatours.com</a>
                             </li>
                         </ul>
 
@@ -97,7 +97,7 @@ export function Footer() {
                         <h3 className="font-semibold text-base mt-8 mb-4 text-white tracking-wide uppercase text-xs">
                             Useful Links
                         </h3>
-                        <ul className="space-y-2 text-xs text-emerald-300/70">
+                        <ul className="space-y-2 text-xs text-stone-300/70">
                             {usefulLinks.map((link) => (
                                 <li key={link.label}>
                                     <a
@@ -119,16 +119,16 @@ export function Footer() {
                         <h3 className="font-semibold text-base mb-5 text-white tracking-wide uppercase text-xs">
                             Newsletter
                         </h3>
-                        <p className="text-emerald-300/70 text-sm mb-5 leading-relaxed">
+                        <p className="text-stone-300/70 text-sm mb-5 leading-relaxed">
                             Subscribe for the latest offers, hidden gems and travel guides.
                         </p>
                         <form className="flex flex-col gap-3">
                             <input
                                 type="email"
                                 placeholder="Your email address"
-                                className="bg-white/8 border border-white/12 rounded-xl px-4 py-3 text-sm text-white placeholder:text-emerald-400/50 focus:ring-2 focus:ring-amber-400/50 focus:border-amber-400/40 outline-none transition-all"
+                                className="bg-white/8 border border-white/12 rounded-xl px-4 py-3 text-sm text-white placeholder:text-stone-400/50 focus:ring-2 focus:ring-amber-400/50 focus:border-amber-400/40 outline-none transition-all"
                             />
-                            <button className="bg-amber-500 hover:bg-amber-400 text-emerald-950 font-semibold py-2.5 rounded-xl transition-colors text-sm shadow-md shadow-amber-500/20">
+                            <button className="bg-amber-500 hover:bg-amber-400 text-stone-950 font-semibold py-2.5 rounded-xl transition-colors text-sm shadow-md shadow-amber-500/20">
                                 Subscribe
                             </button>
                         </form>
@@ -136,8 +136,8 @@ export function Footer() {
                 </div>
 
                 {/* Bottom bar */}
-                <div className="border-t border-white/8 py-6 flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-emerald-400/60">
-                    <p>© {new Date().getFullYear()} Travel.lk · All rights reserved.</p>
+                <div className="border-t border-white/8 py-6 flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-stone-400/60">
+                    <p>© {new Date().getFullYear()} A&S Pearl Lanka Tours · All rights reserved.</p>
                     <div className="flex gap-5">
                         <Link href="/privacy" className="hover:text-amber-400 transition-colors">Privacy Policy</Link>
                         <Link href="/terms" className="hover:text-amber-400 transition-colors">Terms of Service</Link>

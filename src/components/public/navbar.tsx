@@ -34,18 +34,18 @@ export function Navbar({ session }: { session: any }) {
 
     // Pill nav styles
     const scrolledStyles = {
-        container: "w-[95%] md:w-[820px]",
-        background: "bg-emerald-950/95 backdrop-blur-xl border-emerald-800/40 shadow-xl shadow-emerald-950/20",
+        container: "w-[95%] md:w-max md:min-w-[820px]",
+        background: "bg-stone-950/95 backdrop-blur-xl border-stone-800/40 shadow-xl shadow-stone-950/20",
         text: "text-white/90 hover:text-amber-400",
         logo: "text-white",
-        padding: "py-2.5 px-6",
+        padding: "py-2.5 px-6 md:px-8",
     };
 
     const topStyles = {
         container: "w-[98%] md:w-[1060px]",
         background: isHome
             ? "bg-white/10 backdrop-blur-sm border-white/15"
-            : "bg-emerald-950/80 backdrop-blur-md border-emerald-800/30 shadow-sm",
+            : "bg-stone-950/80 backdrop-blur-md border-stone-800/30 shadow-sm",
         text: isHome ? "text-white hover:text-amber-300" : "text-white/90 hover:text-amber-400",
         logo: "text-white",
         padding: "py-3 px-8",
@@ -62,7 +62,7 @@ export function Navbar({ session }: { session: any }) {
                     isScrolled ? "max-h-0 opacity-0" : "max-h-10 opacity-100"
                 )}
             >
-                <div className="bg-emerald-950 text-emerald-100 text-xs py-2 px-4 hidden md:flex justify-end items-center gap-6 w-full">
+                <div className="bg-stone-950 text-stone-100 text-xs py-2 px-4 hidden md:flex justify-end items-center gap-6 w-full">
                     <a
                         href="tel:+94112345678"
                         className="flex items-center gap-1.5 hover:text-amber-400 transition-colors"
@@ -71,11 +71,11 @@ export function Navbar({ session }: { session: any }) {
                         +94 11 234 5678
                     </a>
                     <a
-                        href="mailto:hello@travel.lk"
+                        href="mailto:info@aspearllankatours.com"
                         className="flex items-center gap-1.5 hover:text-amber-400 transition-colors"
                     >
                         <Mail className="h-3 w-3" />
-                        hello@travel.lk
+                        info@aspearllankatours.com
                     </a>
                 </div>
             </div>
@@ -93,15 +93,15 @@ export function Navbar({ session }: { session: any }) {
                     {/* Logo */}
                     <Link href="/" className="flex items-center gap-2 shrink-0">
                         <div className="h-8 w-8 rounded-full bg-gradient-to-br from-amber-400 to-amber-600 flex items-center justify-center shadow-md">
-                            <span className="text-emerald-950 font-bold text-xs">T</span>
+                            <span className="text-stone-950 font-bold text-xs">T</span>
                         </div>
                         <span className={cn("text-xl md:text-2xl font-bold tracking-tight transition-colors", styles.logo)}>
-                            Travel<span className="text-amber-400">.lk</span>
+                            A&S Pearl Lanka <span className="text-amber-400">Tours</span>
                         </span>
                     </Link>
 
                     {/* Desktop Nav */}
-                    <nav className="hidden md:flex items-center gap-8 flex-1 justify-center px-4">
+                    <nav className="hidden md:flex items-center gap-5 lg:gap-8 flex-1 justify-center px-4">
                         {routes.map((route) => (
                             <Link
                                 key={route.href}
@@ -136,7 +136,7 @@ export function Navbar({ session }: { session: any }) {
                                     </Link>
                                 ) : null}
                                 <Link href="/profile">
-                                    <div className="h-9 w-9 rounded-full bg-gradient-to-tr from-emerald-600 to-amber-500 flex items-center justify-center text-white font-bold shadow-lg ring-2 ring-white/20 cursor-pointer">
+                                    <div className="h-9 w-9 rounded-full bg-gradient-to-tr from-stone-600 to-amber-500 flex items-center justify-center text-white font-bold shadow-lg ring-2 ring-white/20 cursor-pointer">
                                         {session.user.name?.[0] || session.user.email?.[0] || "U"}
                                     </div>
                                 </Link>
@@ -155,7 +155,7 @@ export function Navbar({ session }: { session: any }) {
                                 <Link href="/register">
                                     <Button
                                         size="sm"
-                                        className="bg-amber-500 hover:bg-amber-400 text-emerald-950 font-semibold rounded-full px-5 text-xs shadow-md shadow-amber-500/20"
+                                        className="bg-amber-500 hover:bg-amber-400 text-stone-950 font-semibold rounded-full px-5 text-xs shadow-md shadow-amber-500/20"
                                     >
                                         Sign Up
                                     </Button>
@@ -182,16 +182,16 @@ export function Navbar({ session }: { session: any }) {
                     onClick={() => setIsOpen(false)}
                 >
                     <div
-                        className="absolute top-[5.5rem] left-1/2 -translate-x-1/2 w-[90%] bg-emerald-950/95 backdrop-blur-2xl rounded-3xl p-6 shadow-2xl ring-1 ring-white/10 flex flex-col gap-1 animate-in zoom-in-95 duration-200"
+                        className="absolute top-[5.5rem] left-1/2 -translate-x-1/2 w-[90%] bg-stone-950/95 backdrop-blur-2xl rounded-3xl p-6 shadow-2xl ring-1 ring-white/10 flex flex-col gap-1 animate-in zoom-in-95 duration-200"
                         onClick={(e) => e.stopPropagation()}
                     >
                         {/* Mobile contact info */}
                         <div className="flex flex-col gap-2 pb-4 mb-2 border-b border-white/10">
-                            <a href="tel:+94112345678" className="flex items-center gap-2 text-xs text-emerald-300">
+                            <a href="tel:+94112345678" className="flex items-center gap-2 text-xs text-stone-300">
                                 <Phone className="h-3 w-3" /> +94 11 234 5678
                             </a>
-                            <a href="mailto:hello@travel.lk" className="flex items-center gap-2 text-xs text-emerald-300">
-                                <Mail className="h-3 w-3" /> hello@travel.lk
+                            <a href="mailto:info@aspearllankatours.com" className="flex items-center gap-2 text-xs text-stone-300">
+                                <Mail className="h-3 w-3" /> info@aspearllankatours.com
                             </a>
                         </div>
 
@@ -216,7 +216,7 @@ export function Navbar({ session }: { session: any }) {
                                     </Button>
                                 </Link>
                                 <Link href="/register" onClick={() => setIsOpen(false)}>
-                                    <Button className="w-full justify-center bg-amber-500 hover:bg-amber-400 text-emerald-950 font-semibold rounded-full">
+                                    <Button className="w-full justify-center bg-amber-500 hover:bg-amber-400 text-stone-950 font-semibold rounded-full">
                                         Sign Up
                                     </Button>
                                 </Link>

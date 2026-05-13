@@ -11,7 +11,7 @@ import { Loader2 } from "lucide-react";
 function SubmitButton() {
     const { pending } = useFormStatus();
     return (
-        <Button className="w-full bg-blue-600 hover:bg-blue-700" disabled={pending}>
+        <Button className="w-full bg-amber-600 hover:bg-amber-700" disabled={pending}>
             {pending ? <Loader2 className="animate-spin mr-2 h-4 w-4" /> : null}
             Create Account
         </Button>
@@ -41,7 +41,7 @@ export default function RegisterPage() {
             {/* Glassy Card */}
             <div className="relative z-10 w-full max-w-md p-8 rounded-3xl border border-white/10 bg-white/5 backdrop-blur-md shadow-2xl ring-1 ring-black/5">
                 <div className="text-center mb-8">
-                    <h1 className="text-3xl font-bold text-white mb-2">Join Travel.lk</h1>
+                    <h1 className="text-3xl font-bold text-white mb-2">Join A&S Pearl Lanka Tours</h1>
                     <p className="text-gray-200">Start your journey with us today.</p>
                 </div>
 

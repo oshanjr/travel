@@ -70,7 +70,7 @@ export function QuoteDialog({ request }: QuoteDialogProps) {
                         </div>
                         <div>
                             <span className="font-semibold block text-slate-500">Customer Email</span>
-                            <span className="text-slate-900"><a href={`mailto:${request.customerEmail}`} className="text-blue-600 hover:underline">{request.customerEmail}</a></span>
+                            <span className="text-slate-900"><a href={`mailto:${request.customerEmail}`} className="text-amber-600 hover:underline">{request.customerEmail}</a></span>
                         </div>
                         <div>
                             <span className="font-semibold block text-slate-500">Guests</span>
@@ -94,7 +94,7 @@ export function QuoteDialog({ request }: QuoteDialogProps) {
                         <span className="font-semibold block text-slate-500 text-sm mb-2">Destinations</span>
                         <div className="flex flex-wrap gap-2">
                             {destinations.map(dest => (
-                                <Badge key={dest} variant="secondary" className="bg-blue-50 text-blue-700">
+                                <Badge key={dest} variant="secondary" className="bg-amber-50 text-amber-700">
                                     {dest}
                                 </Badge>
                             ))}
@@ -137,7 +137,7 @@ export function QuoteDialog({ request }: QuoteDialogProps) {
 
                 <DialogFooter>
                     {request.status === "PENDING" && (
-                        <Button onClick={handleQuote} disabled={isSubmitting} className="bg-blue-600 hover:bg-blue-700">
+                        <Button onClick={handleQuote} disabled={isSubmitting} className="bg-amber-600 hover:bg-amber-700">
                             {isSubmitting ? (
                                 <>
                                     <Loader2 className="mr-2 h-4 w-4 animate-spin" />

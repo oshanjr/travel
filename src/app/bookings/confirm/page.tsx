@@ -39,7 +39,7 @@ export default async function BookingConfirmPage({
     const bookingDate = new Date(date);
 
     return (
-        <div className="min-h-screen bg-gray-50 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-blue-50 via-gray-50 to-gray-50 pt-32 pb-20">
+        <div className="min-h-screen bg-gray-50 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-amber-50 via-gray-50 to-gray-50 pt-32 pb-20">
             <div className="container mx-auto px-4 md:px-6 max-w-4xl">
                 <h1 className="text-3xl font-bold text-gray-900 mb-8 text-center">Confirm Your Booking</h1>
 
@@ -71,14 +71,14 @@ export default async function BookingConfirmPage({
                             <h2 className="text-xl font-bold text-gray-900 mb-6">Booking Details</h2>
 
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-                                <div className="flex items-center gap-3 p-4 rounded-2xl bg-blue-50 text-blue-900">
+                                <div className="flex items-center gap-3 p-4 rounded-2xl bg-amber-50 text-amber-900">
                                     <Calendar className="h-6 w-6" />
                                     <div>
                                         <p className="text-xs font-semibold uppercase opacity-70">Date</p>
                                         <p className="font-medium">{format(bookingDate, "PPP")}</p>
                                     </div>
                                 </div>
-                                <div className="flex items-center gap-3 p-4 rounded-2xl bg-teal-50 text-teal-900">
+                                <div className="flex items-center gap-3 p-4 rounded-2xl bg-stone-50 text-stone-900">
                                     <Users className="h-6 w-6" />
                                     <div>
                                         <p className="text-xs font-semibold uppercase opacity-70">Guests</p>
@@ -94,7 +94,7 @@ export default async function BookingConfirmPage({
                                 </div>
                                 <div className="flex justify-between items-center text-xl font-bold text-gray-900 mt-4">
                                     <span>Total Amount</span>
-                                    <span className="text-blue-600">${totalAmount}</span>
+                                    <span className="text-amber-600">${totalAmount}</span>
                                 </div>
                             </div>
 
@@ -113,7 +113,7 @@ export default async function BookingConfirmPage({
                                 <input type="hidden" name="guests" value={guests} />
                                 <input type="hidden" name="totalAmount" value={totalAmount} />
 
-                                <Button type="submit" className="w-full bg-blue-600 hover:bg-blue-700 text-white h-12 rounded-xl text-lg shadow-lg shadow-blue-600/20">
+                                <Button type="submit" className="w-full bg-amber-600 hover:bg-amber-700 text-white h-12 rounded-xl text-lg shadow-lg shadow-amber-600/20">
                                     Confirm & Pay
                                 </Button>
                             </form>

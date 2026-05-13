@@ -76,10 +76,10 @@ export default async function PackageDetailsPage({ params }: { params: Promise<{
 
                                 <TabsContent value="itinerary" className="mt-0">
                                     <h2 className="text-2xl font-bold mb-6">Daily Itinerary</h2>
-                                    <div className="relative border-l border-blue-200 ml-3 space-y-8 pb-4">
+                                    <div className="relative border-l border-amber-200 ml-3 space-y-8 pb-4">
                                         {itinerary.map((item, index) => (
                                             <div key={index} className="ml-6 relative">
-                                                <div className="absolute -left-[31px] top-0 h-4 w-4 rounded-full bg-blue-600 border-4 border-white shadow-sm" />
+                                                <div className="absolute -left-[31px] top-0 h-4 w-4 rounded-full bg-amber-600 border-4 border-white shadow-sm" />
                                                 <h3 className="font-bold text-lg text-gray-900">Day {item.day}: {item.title}</h3>
                                                 <p className="mt-2 text-gray-600">{item.description}</p>
                                             </div>

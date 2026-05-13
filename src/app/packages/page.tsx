@@ -7,7 +7,7 @@ export default async function PackagesPage() {
     const packages = await getPackages();
 
     return (
-        <div className="min-h-screen bg-gray-50 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-blue-100 via-gray-50 to-gray-50 pt-24 pb-20">
+        <div className="min-h-screen bg-gray-50 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-amber-100 via-gray-50 to-gray-50 pt-24 pb-20">
             <div className="container mx-auto px-4 md:px-6">
                 <div className="text-center mb-12">
                     <h1 className="text-4xl font-bold text-gray-900 mb-4">Explore Our Packages</h1>

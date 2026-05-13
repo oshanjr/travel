@@ -3,10 +3,13 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import Link from "next/link";
+import { AuthError } from "next-auth";
+import { redirect } from "next/navigation";
 
-export default async function LoginPage({ searchParams }: { searchParams: Promise<{ success?: string, callbackUrl?: string }> }) {
-    const { success, callbackUrl: url } = await searchParams;
+export default async function LoginPage({ searchParams }: { searchParams: Promise<{ success?: string, callbackUrl?: string, error?: string }> }) {
+    const { success, callbackUrl: url, error } = await searchParams;
     const successMessage = success;
+    const errorMessage = error === "CredentialsSignin" ? "Invalid email or password." : error;
     const callbackUrl = url || "/admin";
 
     return (
@@ -32,14 +35,31 @@ export default async function LoginPage({ searchParams }: { searchParams: Promis
                         {successMessage}
                     </div>
                 )}
+                {errorMessage && (
+                    <div className="p-3 rounded bg-red-500/20 border border-red-500/50 text-red-200 text-sm text-center">
+                        {errorMessage}
+                    </div>
+                )}
 
                 <form
                     action={async (formData) => {
                         "use server";
-                        await signIn("credentials", {
-                            ...Object.fromEntries(formData),
-                            redirectTo: callbackUrl,
-                        });
+                        try {
+                            await signIn("credentials", {
+                                ...Object.fromEntries(formData),
+                                redirectTo: callbackUrl,
+                            });
+                        } catch (err) {
+                            if (err instanceof AuthError) {
+                                switch (err.type) {
+                                    case 'CredentialsSignin':
+                                        redirect(`/login?error=CredentialsSignin&callbackUrl=${callbackUrl}`);
+                                    default:
+                                        redirect(`/login?error=SomethingWentWrong&callbackUrl=${callbackUrl}`);
+                                }
+                            }
+                            throw err;
+                        }
                     }}
                     className="mt-8 space-y-6"
                 >
@@ -68,7 +88,7 @@ export default async function LoginPage({ searchParams }: { searchParams: Promis
                         </div>
                     </div>
 
-                    <Button type="submit" className="w-full bg-blue-600 hover:bg-blue-700 text-white border-none h-11 text-base">
+                    <Button type="submit" className="w-full bg-amber-600 hover:bg-amber-700 text-white border-none h-11 text-base">
                         Sign in
                     </Button>
                 </form>

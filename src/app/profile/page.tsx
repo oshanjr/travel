@@ -17,13 +17,13 @@ export default async function ProfilePage() {
     const bookings = await getUserBookings();
 
     return (
-        <div className="min-h-screen bg-gray-50 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-blue-100 via-gray-50 to-gray-50 pt-24 pb-20">
+        <div className="min-h-screen bg-gray-50 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-amber-100 via-gray-50 to-gray-50 pt-24 pb-20">
             <div className="container mx-auto px-4 md:px-6">
                 <div className="grid grid-cols-1 lg:grid-cols-4 gap-10">
                     {/* User Info Sidebar */}
                     <div className="lg:col-span-1">
                         <div className="bg-white/70 backdrop-blur-xl border border-white/20 shadow-lg rounded-3xl p-6 text-center sticky top-24">
-                            <div className="w-24 h-24 mx-auto bg-gradient-to-tr from-blue-500 to-teal-400 rounded-full flex items-center justify-center text-white text-3xl font-bold mb-4 ring-4 ring-white shadow-md">
+                            <div className="w-24 h-24 mx-auto bg-gradient-to-tr from-amber-500 to-stone-400 rounded-full flex items-center justify-center text-white text-3xl font-bold mb-4 ring-4 ring-white shadow-md">
                                 {session.user.name?.[0] || session.user.email?.[0] || 'U'}
                             </div>
                             <h2 className="text-xl font-bold text-gray-900">{session.user.name}</h2>
@@ -47,7 +47,7 @@ export default async function ProfilePage() {
                     {/* Main Content: Bookings */}
                     <div className="lg:col-span-3 space-y-6">
                         <h2 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
-                            <PackageIcon className="h-6 w-6 text-blue-600" />
+                            <PackageIcon className="h-6 w-6 text-amber-600" />
                             My Bookings
                         </h2>
 
@@ -56,7 +56,7 @@ export default async function ProfilePage() {
                                 <h3 className="text-lg font-medium text-gray-900 mb-2">No bookings yet</h3>
                                 <p className="text-gray-500 mb-6">Looks like you haven't booked any adventures yet.</p>
                                 <Link href="/packages">
-                                    <Button className="bg-blue-600 hover:bg-blue-700 rounded-full px-6">
+                                    <Button className="bg-amber-600 hover:bg-amber-700 rounded-full px-6">
                                         Browse Packages
                                     </Button>
                                 </Link>
@@ -85,7 +85,7 @@ export default async function ProfilePage() {
                                             </div>
                                             <div className="flex flex-wrap gap-4 text-sm text-gray-600 mb-4">
                                                 <div className="flex items-center gap-1">
-                                                    <Calendar className="h-4 w-4 text-blue-500" />
+                                                    <Calendar className="h-4 w-4 text-amber-500" />
                                                     {format(new Date(booking.createdAt), 'PPP')}
                                                 </div>
                                                 <div className="flex items-center gap-1">

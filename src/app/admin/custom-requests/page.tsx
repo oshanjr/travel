@@ -87,7 +87,7 @@ export default async function CustomRequestsPage() {
                                                         req.status === "PENDING"
                                                             ? "bg-yellow-100 text-yellow-800 hover:bg-yellow-200 border-yellow-200"
                                                             : req.status === "QUOTED"
-                                                                ? "bg-blue-100 text-blue-800 hover:bg-blue-200 border-blue-200"
+                                                                ? "bg-amber-100 text-amber-800 hover:bg-amber-200 border-amber-200"
                                                                 : "bg-green-100 text-green-800 hover:bg-green-200 border-green-200"
                                                     }
                                                 >

@@ -24,12 +24,12 @@ export function PackageCard({ pkg }: PackageCardProps) {
                 />
                 {/* Featured badge */}
                 {pkg.isFeatured && (
-                    <div className="absolute top-4 left-4 bg-amber-500 text-emerald-950 text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-md">
+                    <div className="absolute top-4 left-4 bg-amber-500 text-stone-950 text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-md">
                         Featured
                     </div>
                 )}
                 {/* Duration badge */}
-                <div className="absolute bottom-4 right-4 bg-emerald-950/80 backdrop-blur-sm text-white text-xs font-medium px-2.5 py-1.5 rounded-full flex items-center gap-1">
+                <div className="absolute bottom-4 right-4 bg-stone-950/80 backdrop-blur-sm text-white text-xs font-medium px-2.5 py-1.5 rounded-full flex items-center gap-1">
                     <Clock className="h-3 w-3 text-amber-400" />
                     {pkg.duration}
                 </div>
@@ -37,11 +37,11 @@ export function PackageCard({ pkg }: PackageCardProps) {
 
             <div className="p-5 flex flex-col flex-1">
                 <div className="flex items-center gap-1.5 text-stone-500 text-xs font-medium mb-2">
-                    <MapPin className="h-3.5 w-3.5 text-emerald-600" />
+                    <MapPin className="h-3.5 w-3.5 text-stone-600" />
                     {pkg.location}
                 </div>
 
-                <h3 className="text-lg font-bold text-emerald-950 mb-3 line-clamp-1 group-hover:text-emerald-700 transition-colors font-serif">
+                <h3 className="text-lg font-bold text-stone-950 mb-3 line-clamp-1 group-hover:text-stone-700 transition-colors font-serif">
                     {pkg.title}
                 </h3>
 
@@ -61,14 +61,14 @@ export function PackageCard({ pkg }: PackageCardProps) {
                     <div>
                         <p className="text-[10px] text-stone-400 uppercase tracking-wider font-medium">From</p>
                         <div className="flex items-baseline gap-1">
-                            <span className="text-2xl font-bold text-emerald-800">${Number(pkg.price)}</span>
+                            <span className="text-2xl font-bold text-stone-800">${Number(pkg.price)}</span>
                             <span className="text-xs text-stone-400">/ person</span>
                         </div>
                     </div>
                     <Button
                         asChild
                         size="sm"
-                        className="bg-amber-500 hover:bg-amber-400 text-emerald-950 font-semibold rounded-full px-6 shadow-sm shadow-amber-500/20"
+                        className="bg-amber-500 hover:bg-amber-400 text-stone-950 font-semibold rounded-full px-6 shadow-sm shadow-amber-500/20"
                     >
                         <Link href={`/packages/${pkg.slug}`}>
                             Book Now

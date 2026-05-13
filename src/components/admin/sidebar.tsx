@@ -24,7 +24,7 @@ export function Sidebar() {
         <div className="fixed inset-y-0 left-0 z-10 flex h-screen w-64 flex-col border-r bg-gray-50/40 backdrop-blur-sm">
             <div className="flex h-14 items-center border-b px-6">
                 <Link href="/" className="flex items-center gap-2 font-semibold">
-                    <span className="text-xl font-bold text-blue-700">Travel.lk</span>
+                    <span className="text-xl font-bold text-amber-700">A&S Pearl Lanka Tours</span>
                     <span className="text-xs text-gray-500">Admin</span>
                 </Link>
             </div>

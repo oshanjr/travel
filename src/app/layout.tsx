@@ -16,7 +16,7 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: "Travel.lk - Explore Sri Lanka",
+  title: "A&S Pearl Lanka Tours - Explore Sri Lanka",
   description: "Experience the best of Sri Lanka with our curated travel packages.",
 };
 

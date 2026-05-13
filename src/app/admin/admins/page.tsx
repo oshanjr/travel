@@ -49,7 +49,7 @@ export default async function AdminsPage() {
                             </div>
                             <div className="space-y-2">
                                 <Label htmlFor="email">Email</Label>
-                                <Input id="email" name="email" type="email" placeholder="admin@travel.lk" required />
+                                <Input id="email" name="email" type="email" placeholder="admin@aspearllankatours.com" required />
                             </div>
                             <div className="space-y-2">
                                 <Label htmlFor="password">Password</Label>

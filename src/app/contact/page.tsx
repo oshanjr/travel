@@ -1,8 +1,8 @@
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: "Contact Us | Travel.lk",
-    description: "Get in touch with Travel.lk for inquiries and bookings.",
+    title: "Contact Us | A&S Pearl Lanka Tours",
+    description: "Get in touch with A&S Pearl Lanka Tours for inquiries and bookings.",
 };
 
 export default function ContactPage() {
@@ -32,8 +32,8 @@ export default function ContactPage() {
                         </div>
                         <div>
                             <h3 className="text-lg font-bold text-slate-900 mb-2">Email</h3>
-                            <p className="text-slate-600">info@travel.lk</p>
-                            <p className="text-slate-600">bookings@travel.lk</p>
+                            <p className="text-slate-600">info@aspearllankatours.com</p>
+                            <p className="text-slate-600">bookings@aspearllankatours.com</p>
                         </div>
                     </div>
 
@@ -41,17 +41,17 @@ export default function ContactPage() {
                         <form className="space-y-4">
                             <div>
                                 <label className="block text-sm font-medium text-slate-700 mb-1">Name</label>
-                                <input type="text" className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-blue-500 focus:border-blue-500" placeholder="Your Name" />
+                                <input type="text" className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-amber-500 focus:border-amber-500" placeholder="Your Name" />
                             </div>
                             <div>
                                 <label className="block text-sm font-medium text-slate-700 mb-1">Email</label>
-                                <input type="email" className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-blue-500 focus:border-blue-500" placeholder="your@email.com" />
+                                <input type="email" className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-amber-500 focus:border-amber-500" placeholder="your@email.com" />
                             </div>
                             <div>
                                 <label className="block text-sm font-medium text-slate-700 mb-1">Message</label>
-                                <textarea rows={4} className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-blue-500 focus:border-blue-500" placeholder="How can we help you?"></textarea>
+                                <textarea rows={4} className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-amber-500 focus:border-amber-500" placeholder="How can we help you?"></textarea>
                             </div>
-                            <button type="submit" className="w-full bg-blue-600 text-white font-bold py-3 rounded-lg hover:bg-blue-700 transition">
+                            <button type="submit" className="w-full bg-amber-600 text-white font-bold py-3 rounded-lg hover:bg-amber-700 transition">
                                 Send Message
                             </button>
                         </form>
