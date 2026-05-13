@@ -7,14 +7,27 @@ export default async function PackagesPage() {
     const packages = await getPackages();
 
     return (
-        <div className="min-h-screen bg-gray-50 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-amber-100 via-gray-50 to-gray-50 pt-24 pb-20">
-            <div className="container mx-auto px-4 md:px-6">
-                <div className="text-center mb-12">
-                    <h1 className="text-4xl font-bold text-gray-900 mb-4">Explore Our Packages</h1>
-                    <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+        <div className="min-h-screen bg-stone-50 pb-20">
+            {/* Hero Header with Elephants */}
+            <div className="relative pt-32 pb-24 mb-16 overflow-hidden bg-stone-950">
+                <div 
+                    className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat opacity-60"
+                    style={{ backgroundImage: "url('/bg-elephants.png')" }}
+                />
+                <div className="absolute inset-0 z-0 bg-gradient-to-t from-stone-50 via-stone-950/30 to-stone-950/60" />
+                
+                <div className="container mx-auto px-4 md:px-6 relative z-10 text-center">
+                    <span className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-widest text-amber-400 mb-4">
+                        <span className="text-[0.55rem]">✦</span> Handpicked Tours
+                    </span>
+                    <h1 className="text-4xl md:text-5xl font-bold text-white mb-6 font-serif">Explore Our Packages</h1>
+                    <p className="text-lg text-stone-200 max-w-2xl mx-auto leading-relaxed">
                         Find the perfect getaway from our curated selection of Sri Lankan adventures.
                     </p>
                 </div>
+            </div>
+
+            <div className="container mx-auto px-4 md:px-6">
 
                 {packages.length === 0 ? (
                     <div className="text-center py-20 text-gray-500">

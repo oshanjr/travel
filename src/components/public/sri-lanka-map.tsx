@@ -24,15 +24,15 @@ const districtProvince: Record<string, string> = {
 
 // Province → color
 const provinceColors: Record<string, string> = {
-  "Western":       "#D4AF37",
-  "Central":       "#B8860B",
-  "Southern":      "#C5B358",
-  "Northern":      "#E6C280",
-  "Eastern":       "#F3E5AB",
-  "North Western": "#C5A059",
-  "North Central": "#DAA520",
-  "Uva":           "#F5DEB3",
-  "Sabaragamuwa":  "#E8D8A6",
+  "Northern":      "#F7D327",
+  "North Central": "#504C41",
+  "Eastern":       "#FEED9F",
+  "North Western": "#D0A823",
+  "Central":       "#F7D327",
+  "Uva":           "#D0A823",
+  "Southern":      "#F7D327",
+  "Sabaragamuwa":  "#504C41",
+  "Western":       "#FEED9F",
 };
 
 // Display name mapping (GADM key → display name)
@@ -125,7 +125,7 @@ export function SriLankaDistrictMap({ compact = false }: MapProps) {
                       onMouseEnter={() => setHoveredDistrict(gadmName)}
                       onMouseLeave={() => setHoveredDistrict("")}
                       onClick={() => setSelectedDistrict(gadmName)}
-                      fill={isSelected ? "#f59e0b" : isHovered ? "#fbbf24" : baseColor}
+                      fill={isSelected ? "#FBFBF5" : baseColor}
                       stroke="rgba(255,255,255,0.25)"
                       strokeWidth={0.5}
                       style={{
@@ -314,7 +314,7 @@ export function SriLankaDistrictMap({ compact = false }: MapProps) {
                       onMouseEnter={() => setHoveredDistrict(gadmName)}
                       onMouseLeave={() => setHoveredDistrict("")}
                       onClick={() => setSelectedDistrict(gadmName)}
-                      fill={isSelected ? "#f59e0b" : isHovered ? "#fbbf24" : baseColor}
+                      fill={isSelected ? "#FBFBF5" : baseColor}
                       stroke="rgba(255,255,255,0.35)"
                       strokeWidth={0.6}
                       style={{

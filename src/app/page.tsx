@@ -109,11 +109,17 @@ export default async function Home() {
         defaultImage={heroConfig.image}
       />
       {/* ── About Us Section (50vh) ─────────────────────────── */}
-      <section className="min-h-[50vh] flex items-center bg-white relative overflow-hidden">
+      <section className="min-h-[50vh] flex items-center relative overflow-hidden bg-white">
+        {/* Background Image with Overlay */}
+        <div 
+          className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat opacity-[0.35]"
+          style={{ backgroundImage: "url('/bg-tea-misty.png')" }}
+        />
+        <div className="absolute inset-0 z-0 bg-gradient-to-r from-stone-50 via-stone-50/90 to-transparent" />
+        
         {/* Subtle decorative elements */}
         <div className="absolute top-0 right-0 w-80 h-80 bg-stone-100/40 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3" />
         <div className="absolute bottom-0 left-0 w-64 h-64 bg-amber-100/30 rounded-full blur-3xl translate-y-1/3 -translate-x-1/4" />
-        <div className="absolute inset-0 opacity-[0.02] pointer-events-none" style={{ backgroundImage: "url(\"data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0L30 60M0 30L60 30' stroke='%23D4AF37' stroke-width='1' fill='none'/%3E%3Ccircle cx='30' cy='30' r='20' stroke='%23D4AF37' stroke-width='1' fill='none'/%3E%3C/svg%3E\")" }} />
 
         <FadeIn className="container mx-auto px-4 md:px-6 relative z-10 py-16">
           <div className="flex flex-col md:flex-row items-center gap-12 md:gap-16">
@@ -310,12 +316,13 @@ export default async function Home() {
       </section>
 
       {/* ── Why Choose Us ──────────────────────────────────────── */}
-      <section className="py-20 bg-stone-950 text-white relative overflow-hidden">
-        {/* Decorative pattern */}
-        <div className="absolute inset-0 opacity-5" style={{
-          backgroundImage: "radial-gradient(circle at 25% 50%, #ffffff 1px, transparent 1px), radial-gradient(circle at 75% 50%, #ffffff 1px, transparent 1px)",
-          backgroundSize: "60px 60px"
-        }} />
+      <section className="py-24 text-white relative overflow-hidden bg-stone-950">
+        {/* Background Image with Overlay */}
+        <div 
+          className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat opacity-40 mix-blend-luminosity"
+          style={{ backgroundImage: "url('/bg-sigiriya-dark.png')" }}
+        />
+        <div className="absolute inset-0 z-0 bg-gradient-to-t from-stone-950 via-stone-950/60 to-stone-950" />
         <div className="container mx-auto px-4 md:px-6 relative z-10">
           <FadeIn className="text-center mb-14">
             <span className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-widest text-amber-400 mb-3">
@@ -395,10 +402,10 @@ export default async function Home() {
         {/* Decorative blobs */}
         <div className="absolute top-0 left-0 w-72 h-72 bg-amber-100/40 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />
         <div className="absolute bottom-0 right-0 w-96 h-96 bg-stone-200/40 rounded-full blur-3xl translate-x-1/3 translate-y-1/3" />
-        {/* Subtle texture */}
-        <div className="absolute inset-0 opacity-[0.03]" style={{
-          backgroundImage: "repeating-linear-gradient(-45deg, #D4AF37 0, #D4AF37 1px, transparent 0, transparent 50%)",
-          backgroundSize: "12px 12px"
+        
+        {/* Topographic Vector Pattern */}
+        <div className="absolute inset-0 opacity-[0.04]" style={{
+          backgroundImage: "url(\"data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23D0A823' fill-opacity='1' fill-rule='evenodd'/%3E%3C/svg%3E\")"
         }} />
 
         <FadeIn className="container mx-auto px-4 relative z-10 text-center">

@@ -41,8 +41,14 @@ export default function AboutPage() {
     return (
         <main className="min-h-screen bg-stone-50 pb-24">
             {/* Hero Section */}
-            <section className="relative pt-32 pb-20 overflow-hidden bg-stone-950">
-                <div className="absolute inset-0 opacity-[0.05]" style={{ backgroundImage: "radial-gradient(circle at 1px 1px, #D4AF37 1px, transparent 0)", backgroundSize: "28px 28px" }} />
+            <section className="relative pt-32 pb-24 overflow-hidden bg-stone-950">
+                {/* Background Image with Overlay */}
+                <div 
+                    className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat opacity-60"
+                    style={{ backgroundImage: "url('/bg-tea-misty.png')" }}
+                />
+                <div className="absolute inset-0 z-0 bg-gradient-to-t from-stone-50 via-stone-950/40 to-stone-950/70" />
+                
                 <div className="absolute top-0 right-0 w-96 h-96 bg-amber-500/10 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/3" />
                 
                 <div className="container mx-auto px-4 relative z-10">
