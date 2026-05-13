@@ -11,10 +11,10 @@ export default function ContactPage() {
             {/* Hero Header with Beach */}
             <div className="relative pt-32 pb-28 mb-16 overflow-hidden bg-stone-950">
                 <div 
-                    className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat opacity-60"
+                    className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat opacity-90"
                     style={{ backgroundImage: "url('/bg-beach-contact.png')" }}
                 />
-                <div className="absolute inset-0 z-0 bg-gradient-to-t from-stone-50 via-stone-950/40 to-stone-950/70" />
+                <div className="absolute inset-0 z-0 bg-gradient-to-t from-stone-50 via-stone-950/20 to-stone-950/60" />
                 
                 <div className="container mx-auto px-4 relative z-10 text-center">
                     <span className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-widest text-amber-400 mb-4">

@@ -342,7 +342,7 @@ export default async function Home() {
               return (
                 <StaggerItem key={item.label}>
                   <div
-                    className="flex flex-col items-center text-center p-6 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 hover:border-amber-400/30 transition-all duration-300 group h-full"
+                    className="flex flex-col items-center text-center p-6 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 hover:border-amber-400/30 transition-all duration-500 group h-full hover:-translate-y-2 hover:scale-[1.03] hover:shadow-2xl hover:shadow-amber-500/20"
                   >
                     <div className="h-14 w-14 rounded-full bg-amber-500/15 border border-amber-400/30 flex items-center justify-center mb-5 group-hover:bg-amber-500/25 transition-colors">
                       <Icon className="h-6 w-6 text-amber-400" />

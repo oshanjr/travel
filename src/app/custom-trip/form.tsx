@@ -129,7 +129,7 @@ export function CustomTripForm() {
     }
 
     return (
-        <Card className="border-none shadow-xl bg-white/80 backdrop-blur-sm border-t-4 border-t-amber-600">
+        <Card className="border border-stone-200 shadow-2xl bg-white/95 backdrop-blur-md rounded-3xl overflow-hidden border-t-4 border-t-amber-500">
             <CardContent className="pt-8">
                 <Form {...form}>
                     <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
