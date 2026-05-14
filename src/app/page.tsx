@@ -108,79 +108,44 @@ export default async function Home() {
         defaultTitle={heroConfig.title}
         defaultImage={heroConfig.image}
       />
-      {/* ── About Us Section (50vh) ─────────────────────────── */}
-      <section className="min-h-[50vh] flex items-center relative overflow-hidden bg-white">
-        {/* Background Image with Overlay */}
-        <div 
-          className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat opacity-[0.35]"
-          style={{ backgroundImage: "url('/bg-tea-misty.png')" }}
-        />
-        <div className="absolute inset-0 z-0 bg-gradient-to-r from-stone-50 via-stone-50/90 to-transparent" />
-        
-        {/* Subtle decorative elements */}
-        <div className="absolute top-0 right-0 w-80 h-80 bg-stone-100/40 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3" />
-        <div className="absolute bottom-0 left-0 w-64 h-64 bg-amber-100/30 rounded-full blur-3xl translate-y-1/3 -translate-x-1/4" />
+      {/* ── About Us Section ─────────────────────────── */}
+      <section className="min-h-[50vh] flex items-center relative overflow-hidden bg-stone-950">
+        <div className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat opacity-80" style={{ backgroundImage: "url('/bg-tea-misty.png')" }} />
+        <div className="absolute inset-0 z-0 bg-stone-950/60" />
 
         <FadeIn className="container mx-auto px-4 md:px-6 relative z-10 py-16">
           <div className="flex flex-col md:flex-row items-center gap-12 md:gap-16">
-            {/* Text side */}
             <div className="flex-1 text-center md:text-left">
-              <span className="section-badge">About A&S Pearl Lanka Tours</span>
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-stone-950 font-serif mb-5 leading-tight">
+              <span className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-widest text-amber-400 mb-4"><span className="text-[0.55rem]">✦</span> About A&S Pearl Lanka Tours</span>
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white font-serif mb-5 leading-tight drop-shadow-xl">
                 Crafting Unforgettable<br />
-                <span className="text-amber-600 italic">Sri Lankan</span> Journeys
+                <span className="text-amber-400 italic">Sri Lankan</span> Journeys
               </h2>
-              <p className="text-stone-600 leading-relaxed mb-6 max-w-lg mx-auto md:mx-0">
+              <p className="text-stone-200 leading-relaxed mb-6 max-w-lg mx-auto md:mx-0">
                 Born from a deep love for this island, A&S Pearl Lanka Tours connects you with the authentic heart of Sri Lanka — from misty tea estates and ancient ruins to pristine coastlines and vibrant culture. Every itinerary is handcrafted by local experts who know these lands intimately.
               </p>
               <div className="flex flex-wrap justify-center md:justify-start gap-6 mb-8">
-                <div className="text-center">
-                  <p className="text-2xl font-bold text-stone-800 font-serif">10+</p>
-                  <p className="text-[10px] uppercase tracking-wider text-stone-500 font-semibold">Years</p>
-                </div>
-                <div className="w-px h-10 bg-stone-200" />
-                <div className="text-center">
-                  <p className="text-2xl font-bold text-stone-800 font-serif">5,000+</p>
-                  <p className="text-[10px] uppercase tracking-wider text-stone-500 font-semibold">Guests</p>
-                </div>
-                <div className="w-px h-10 bg-stone-200" />
-                <div className="text-center">
-                  <p className="text-2xl font-bold text-stone-800 font-serif">25</p>
-                  <p className="text-[10px] uppercase tracking-wider text-stone-500 font-semibold">Districts</p>
-                </div>
-                <div className="w-px h-10 bg-stone-200" />
-                <div className="text-center">
-                  <p className="text-2xl font-bold text-stone-800 font-serif">120+</p>
-                  <p className="text-[10px] uppercase tracking-wider text-stone-500 font-semibold">Tours</p>
-                </div>
+                <div className="text-center"><p className="text-2xl font-bold text-white font-serif">10+</p><p className="text-[10px] uppercase tracking-wider text-amber-400 font-semibold">Years</p></div>
+                <div className="w-px h-10 bg-white/20" />
+                <div className="text-center"><p className="text-2xl font-bold text-white font-serif">5,000+</p><p className="text-[10px] uppercase tracking-wider text-amber-400 font-semibold">Guests</p></div>
+                <div className="w-px h-10 bg-white/20" />
+                <div className="text-center"><p className="text-2xl font-bold text-white font-serif">25</p><p className="text-[10px] uppercase tracking-wider text-amber-400 font-semibold">Districts</p></div>
+                <div className="w-px h-10 bg-white/20" />
+                <div className="text-center"><p className="text-2xl font-bold text-white font-serif">120+</p><p className="text-[10px] uppercase tracking-wider text-amber-400 font-semibold">Tours</p></div>
               </div>
               <Link href="/about">
-                <Button className="bg-stone-800 hover:bg-stone-700 text-white font-semibold rounded-full px-8 shadow-lg">
+                <Button className="bg-amber-500 hover:bg-amber-400 text-stone-950 font-semibold rounded-full px-8 shadow-lg shadow-amber-500/25">
                   Learn More About Us <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
               </Link>
             </div>
-
-            {/* Visual side — decorative accent */}
             <div className="flex-1 max-w-sm w-full hidden md:block">
-              <div className="relative">
-                {/* Decorative frame */}
-                <div className="absolute -inset-3 rounded-3xl bg-gradient-to-br from-stone-200/40 to-amber-200/40 blur-sm" />
-                <div className="relative rounded-3xl overflow-hidden bg-stone-950 p-8 shadow-2xl">
-                  <div className="text-center space-y-4">
-                    <div className="h-16 w-16 rounded-full bg-amber-500/20 border border-amber-400/30 flex items-center justify-center mx-auto">
-                      <Map className="h-8 w-8 text-amber-400" />
-                    </div>
-                    <h3 className="text-xl font-bold text-white font-serif">Our Mission</h3>
-                    <p className="text-stone-200/70 text-sm leading-relaxed">
-                      To share the beauty of Sri Lanka with the world, one unforgettable journey at a time — responsibly, authentically, and with heart.
-                    </p>
-                    <div className="pt-2 flex justify-center gap-2">
-                      {["🌿", "🏛️", "🐘", "🌊", "☕"].map((emoji) => (
-                        <span key={emoji} className="text-lg">{emoji}</span>
-                      ))}
-                    </div>
-                  </div>
+              <div className="backdrop-blur-md bg-white/10 border border-white/20 rounded-3xl p-8 shadow-2xl shadow-black/20">
+                <div className="text-center space-y-4">
+                  <div className="h-16 w-16 rounded-full bg-amber-500/20 border border-amber-400/30 flex items-center justify-center mx-auto"><Map className="h-8 w-8 text-amber-400" /></div>
+                  <h3 className="text-xl font-bold text-white font-serif">Our Mission</h3>
+                  <p className="text-stone-200/70 text-sm leading-relaxed">To share the beauty of Sri Lanka with the world, one unforgettable journey at a time — responsibly, authentically, and with heart.</p>
+                  <div className="pt-2 flex justify-center gap-2">{["🌿", "🏛️", "🐘", "🌊", "☕"].map((emoji) => (<span key={emoji} className="text-lg">{emoji}</span>))}</div>
                 </div>
               </div>
             </div>
@@ -217,14 +182,16 @@ export default async function Home() {
       </section>
 
       {/* ── Activities Section ────────────────────────────────── */}
-      <section className="py-24 bg-white relative overflow-hidden">
+      <section className="py-24 relative overflow-hidden bg-stone-950">
+        <div className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat opacity-70" style={{ backgroundImage: "url('/bg-sigiriya-dark.png')" }} />
+        <div className="absolute inset-0 z-0 bg-stone-950/70" />
         <div className="container mx-auto px-4 md:px-6 relative z-10">
           <FadeIn className="text-center mb-16">
-            <span className="section-badge">Unforgettable Experiences</span>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-stone-950 font-serif mb-4">
-              Activities in <span className="text-amber-500 italic">Sri Lanka</span>
+            <span className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-widest text-amber-400 mb-4"><span className="text-[0.55rem]">✦</span> Unforgettable Experiences</span>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white font-serif mb-4">
+              Activities in <span className="text-amber-400 italic">Sri Lanka</span>
             </h2>
-            <p className="text-stone-500 max-w-2xl mx-auto leading-relaxed">
+            <p className="text-stone-300 max-w-2xl mx-auto leading-relaxed">
               From misty peaks to golden shores, discover the endless ways to experience the magic of the island.
             </p>
           </FadeIn>
@@ -235,22 +202,16 @@ export default async function Home() {
               { icon: <Waves className="h-6 w-6" />, title: "Surfing & Beaches", desc: "Ride the waves at Arugam Bay or relax on the pristine, palm-fringed sands of Mirissa." },
               { icon: <Sprout className="h-6 w-6" />, title: "Tea Estate Tours", desc: "Wander through the stone hills of Nuwara Eliya and learn the art of Ceylon tea-making." },
               { icon: <Compass className="h-6 w-6" />, title: "Cultural Heritage", desc: "Explore ancient shrines, the Sigiriya rock fortress, and the sacred Temple of the Tooth." },
-              { icon: <Mountain className="h-6 w-6" />, title: "Hiking & Trekking", desc: "Conquer misty trails in Ella or witness the sunrise from the sacred heights of Adam’s Peak." },
+              { icon: <Mountain className="h-6 w-6" />, title: "Hiking & Trekking", desc: "Conquer misty trails in Ella or witness the sunrise from the sacred heights of Adam's Peak." },
               { icon: <Anchor className="h-6 w-6" />, title: "Whale Watching", desc: "Set sail from Mirissa to encounter the majestic amber whales and playful dolphins." },
             ].map((activity, idx) => (
               <StaggerItem key={idx}>
-                <div 
-                  className="group p-8 rounded-2xl bg-stone-50 border border-stone-100 hover:border-stone-200 hover:bg-stone-50/50 transition-all duration-300 hover:shadow-xl hover:shadow-stone-900/5 h-full"
-                >
-                  <div className="mb-4 h-12 w-12 rounded-xl bg-white border border-stone-100 flex items-center justify-center text-stone-700 group-hover:text-amber-600 transition-colors shadow-sm">
+                <div className="group backdrop-blur-md bg-white/10 border border-white/20 rounded-2xl p-8 hover:bg-white/15 hover:border-amber-400/40 hover:-translate-y-1 hover:scale-[1.02] transition-all duration-500 h-full shadow-xl shadow-black/20">
+                  <div className="mb-4 h-12 w-12 rounded-xl bg-amber-400/15 border border-amber-400/30 flex items-center justify-center text-amber-300 group-hover:bg-amber-400/25 transition-colors">
                     {activity.icon}
                   </div>
-                  <h3 className="text-xl font-bold text-stone-900 mb-3 font-serif line-clamp-1">
-                    {activity.title}
-                  </h3>
-                  <p className="text-stone-500 text-sm leading-relaxed line-clamp-3 group-hover:text-stone-600 transition-colors">
-                    {activity.desc}
-                  </p>
+                  <h3 className="text-xl font-bold text-white mb-3 font-serif line-clamp-1">{activity.title}</h3>
+                  <p className="text-stone-300 text-sm leading-relaxed line-clamp-3 group-hover:text-stone-200 transition-colors">{activity.desc}</p>
                 </div>
               </StaggerItem>
             ))}
@@ -289,26 +250,18 @@ export default async function Home() {
       </section>
 
       {/* ── Destinations Section ─────────────────────────────── */}
-      <section className="py-20 bg-amber-50/40">
-        <FadeIn className="container mx-auto px-4 md:px-6">
+      <section className="py-20 relative overflow-hidden bg-stone-950">
+        <div className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat opacity-60" style={{ backgroundImage: "url('/bg-elephants.png')" }} />
+        <div className="absolute inset-0 z-0 bg-stone-950/70" />
+        <FadeIn className="container mx-auto px-4 md:px-6 relative z-10">
           <div className="flex items-end justify-between mb-10">
             <div>
-              <span className="section-badge">Explore Destinations</span>
-              <h2 className="text-3xl md:text-4xl font-bold text-stone-950 font-serif">
-                Popular Destinations
-              </h2>
-              <p className="text-stone-500 mt-2 max-w-md">
-                Explore the most visited and beloved places across Sri Lanka
-              </p>
+              <span className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-widest text-amber-400 mb-3"><span className="text-[0.55rem]">✦</span> Explore Destinations</span>
+              <h2 className="text-3xl md:text-4xl font-bold text-white font-serif">Popular Destinations</h2>
+              <p className="text-stone-300 mt-2 max-w-md">Explore the most visited and beloved places across Sri Lanka</p>
             </div>
-            <Button
-              variant="ghost"
-              className="text-stone-700 hover:text-stone-900 hover:bg-stone-50 hidden md:flex font-medium"
-              asChild
-            >
-              <Link href="/packages">
-                View All <ArrowRight className="ml-2 h-4 w-4" />
-              </Link>
+            <Button variant="ghost" className="text-amber-400 hover:text-amber-300 hover:bg-white/10 hidden md:flex font-medium" asChild>
+              <Link href="/packages">View All <ArrowRight className="ml-2 h-4 w-4" /></Link>
             </Button>
           </div>
           <DestinationsCarousel destinations={destinations} />
@@ -359,14 +312,16 @@ export default async function Home() {
       </section>
 
       {/* ── Featured Packages Section ──────────────────────────── */}
-      <section className="py-20 bg-stone-50/60">
-        <div className="container mx-auto px-4 md:px-6">
+      <section className="py-20 relative overflow-hidden bg-stone-950">
+        <div className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat opacity-50" style={{ backgroundImage: "url('/bg-beach-contact.png')" }} />
+        <div className="absolute inset-0 z-0 bg-stone-950/75" />
+        <div className="container mx-auto px-4 md:px-6 relative z-10">
           <FadeIn className="text-center mb-12">
-            <span className="section-badge">Featured Tours</span>
-            <h2 className="text-3xl md:text-4xl font-bold text-stone-950 font-serif">
+            <span className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-widest text-amber-400 mb-3"><span className="text-[0.55rem]">✦</span> Featured Tours</span>
+            <h2 className="text-3xl md:text-4xl font-bold text-white font-serif">
               Handpicked Packages
             </h2>
-            <p className="text-stone-500 max-w-2xl mx-auto mt-3">
+            <p className="text-stone-300 max-w-2xl mx-auto mt-3">
               Curated tours and experiences designed to give you the very best of Sri Lanka.
             </p>
           </FadeIn>
@@ -384,7 +339,7 @@ export default async function Home() {
               asChild
               size="lg"
               variant="outline"
-              className="border-stone-700 text-stone-800 hover:bg-stone-50 font-semibold px-8"
+              className="border-amber-400/50 text-amber-400 hover:bg-white/10 font-semibold px-8"
             >
               <Link href="/packages">Browse All Packages</Link>
             </Button>
@@ -396,37 +351,31 @@ export default async function Home() {
       <GoogleReviews />
 
       {/* ── CTA / Newsletter Section ───────────────────────────── */}
-      <section className="py-24 relative overflow-hidden border-y border-amber-200/50" style={{
-        background: "linear-gradient(135deg, #FDFBF7 0%, #FFFFFF 50%, #F5F0E6 100%)"
-      }}>
-        {/* Decorative blobs */}
-        <div className="absolute top-0 left-0 w-72 h-72 bg-amber-100/40 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />
-        <div className="absolute bottom-0 right-0 w-96 h-96 bg-stone-200/40 rounded-full blur-3xl translate-x-1/3 translate-y-1/3" />
-        
-        {/* Topographic Vector Pattern */}
-        <div className="absolute inset-0 opacity-[0.04]" style={{
-          backgroundImage: "url(\"data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23D0A823' fill-opacity='1' fill-rule='evenodd'/%3E%3C/svg%3E\")"
-        }} />
+      <section className="py-24 relative overflow-hidden bg-stone-950">
+        <div className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat opacity-50" style={{ backgroundImage: "url('/bg-tea-misty.png')" }} />
+        <div className="absolute inset-0 z-0 bg-stone-950/70" />
+        <div className="absolute -top-24 -left-24 w-96 h-96 bg-amber-400/10 rounded-full blur-[120px]" />
+        <div className="absolute -bottom-24 -right-24 w-96 h-96 bg-amber-400/10 rounded-full blur-[120px]" />
 
         <FadeIn className="container mx-auto px-4 relative z-10 text-center">
-          <span className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-widest text-amber-600 mb-4">
+          <span className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-widest text-amber-400 mb-4">
             <span className="text-[0.55rem]">✦</span> Start Your Adventure
           </span>
-          <h2 className="text-3xl md:text-4xl font-bold text-stone-900 mb-5 font-serif">
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-5 font-serif">
             Ready to Discover Sri Lanka?
           </h2>
-          <p className="text-stone-600 mb-10 max-w-2xl mx-auto text-lg">
+          <p className="text-stone-300 mb-10 max-w-2xl mx-auto text-lg">
             Subscribe for exclusive travel offers, hidden gems, and curated itineraries delivered to your inbox.
           </p>
           <div className="flex flex-col sm:flex-row max-w-lg mx-auto gap-3 items-center justify-center">
             <input
               type="email"
               placeholder="Your email address"
-              className="w-full sm:flex-1 h-14 px-6 rounded-full text-gray-900 bg-white focus:outline-none focus:ring-2 focus:ring-amber-400 shadow-xl text-sm transition-all"
+              className="w-full sm:flex-1 h-14 px-6 rounded-full text-white bg-white/10 border border-white/20 backdrop-blur-md focus:outline-none focus:ring-2 focus:ring-amber-400 placeholder-stone-400 text-sm transition-all"
             />
             <Button
               size="lg"
-              className="w-full sm:w-auto h-14 bg-amber-500 hover:bg-amber-400 text-stone-950 font-bold rounded-full px-10 shadow-xl shadow-amber-500/20 shrink-0 transition-all active:scale-95"
+              className="w-full sm:w-auto h-14 bg-amber-500 hover:bg-amber-400 text-stone-950 font-bold rounded-full px-10 shadow-xl shadow-amber-500/25 shrink-0 transition-all active:scale-95"
             >
               Subscribe
             </Button>
