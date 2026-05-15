@@ -1,5 +1,6 @@
 import { getPackages } from "@/app/actions/packages";
 import { PackageCard } from "@/components/public/package-card";
+import { FadeIn, StaggerContainer, StaggerItem } from "@/components/ui/fade-in";
 
 export const dynamic = 'force-dynamic';
 
@@ -18,15 +19,17 @@ export default async function PackagesPage() {
 
             {/* Hero */}
             <section className="pt-36 pb-20 text-center px-4">
-                <span className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-widest text-amber-400 mb-4">
-                    <span className="text-[0.55rem]">✦</span> Handpicked Tours
-                </span>
-                <h1 className="text-4xl md:text-5xl font-bold text-white font-serif mb-4 drop-shadow-xl">
-                    Explore Our Packages
-                </h1>
-                <p className="text-lg text-stone-200 max-w-2xl mx-auto leading-relaxed">
-                    Find the perfect getaway from our curated selection of Sri Lankan adventures.
-                </p>
+                <FadeIn>
+                    <span className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-widest text-amber-400 mb-4">
+                        <span className="text-[0.55rem]">✦</span> Handpicked Tours
+                    </span>
+                    <h1 className="text-4xl md:text-5xl font-bold text-white font-serif mb-4 drop-shadow-xl">
+                        Explore Our Packages
+                    </h1>
+                    <p className="text-lg text-stone-200 max-w-2xl mx-auto leading-relaxed">
+                        Find the perfect getaway from our curated selection of Sri Lankan adventures.
+                    </p>
+                </FadeIn>
             </section>
 
             {/* Packages grid */}
@@ -36,11 +39,13 @@ export default async function PackagesPage() {
                         <p className="text-stone-300 text-lg">No packages available at the moment. Please check back later.</p>
                     </div>
                 ) : (
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+                    <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
                         {packages.map((pkg) => (
-                            <PackageCard key={pkg.id} pkg={pkg} />
+                            <StaggerItem key={pkg.id}>
+                                <PackageCard pkg={pkg} />
+                            </StaggerItem>
                         ))}
-                    </div>
+                    </StaggerContainer>
                 )}
             </div>
         </div>

@@ -22,17 +22,33 @@ const districtProvince: Record<string, string> = {
   Ratnapura: "Sabaragamuwa", Kegalle: "Sabaragamuwa",
 };
 
-// Province → color
-const provinceColors: Record<string, string> = {
-  "Northern":      "#F7D327",
-  "North Central": "#504C41",
-  "Eastern":       "#FEED9F",
-  "North Western": "#D0A823",
-  "Central":       "#F7D327",
-  "Uva":           "#D0A823",
-  "Southern":      "#F7D327",
-  "Sabaragamuwa":  "#504C41",
-  "Western":       "#FEED9F",
+// Unique color per district (25 vibrant colors)
+const districtColors: Record<string, string> = {
+  Colombo:      "#3B82F6", // Blue
+  Gampaha:      "#22D3EE", // Cyan
+  Kalutara:     "#10B981", // Emerald
+  Kandy:        "#F59E0B", // Amber
+  Matale:       "#EF4444", // Red
+  NuwaraEliya:  "#8B5CF6", // Violet
+  Galle:        "#14B8A6", // Teal
+  Matara:       "#F97316", // Orange
+  Hambantota:   "#EC4899", // Pink
+  Jaffna:       "#6366F1", // Indigo
+  Kilinochchi:  "#84CC16", // Lime
+  Mannar:       "#06B6D4", // Cyan-dark
+  Vavuniya:     "#D946EF", // Fuchsia
+  Mullaitivu:   "#0EA5E9", // Sky
+  Batticaloa:   "#FB923C", // Orange-light
+  Ampara:       "#A78BFA", // Purple-light
+  Trincomalee:  "#34D399", // Emerald-light
+  Kurunegala:   "#FBBF24", // Yellow
+  Puttalam:     "#2DD4BF", // Teal-light
+  Anuradhapura: "#F43F5E", // Rose
+  Polonnaruwa:  "#818CF8", // Indigo-light
+  Badulla:      "#4ADE80", // Green-light
+  Moneragala:   "#E879F9", // Fuchsia-light
+  Ratnapura:    "#38BDF8", // Sky-light
+  Kegalle:      "#FB7185", // Rose-light
 };
 
 // Display name mapping (GADM key → display name)
@@ -114,8 +130,7 @@ export function SriLankaDistrictMap({ compact = false }: MapProps) {
               {({ geographies }: { geographies: any[] }) =>
                 geographies.map((geo: any) => {
                   const gadmName: string = geo.properties.NAME_1;
-                  const province = districtProvince[gadmName] ?? "Western";
-                  const baseColor = provinceColors[province] ?? "#D4AF37";
+                  const baseColor = districtColors[gadmName] ?? "#D4AF37";
                   const isHovered = hoveredDistrict === gadmName;
                   const isSelected = selectedDistrict === gadmName;
                   return (
@@ -302,8 +317,7 @@ export function SriLankaDistrictMap({ compact = false }: MapProps) {
               {({ geographies }: { geographies: any[] }) =>
                 geographies.map((geo: any) => {
                   const gadmName: string = geo.properties.NAME_1;
-                  const province = districtProvince[gadmName] ?? "Western";
-                  const baseColor = provinceColors[province] ?? "#D4AF37";
+                  const baseColor = districtColors[gadmName] ?? "#D4AF37";
                   const isHovered = hoveredDistrict === gadmName;
                   const isSelected = selectedDistrict === gadmName;
 
@@ -332,11 +346,11 @@ export function SriLankaDistrictMap({ compact = false }: MapProps) {
       </div>
 
       {/* Legend */}
-      <div className="relative z-10 flex flex-wrap justify-center gap-x-4 gap-y-1 px-4 pb-6">
-        {Object.entries(provinceColors).map(([prov, color]) => (
-          <div key={prov} className="flex items-center gap-1.5 text-[10px] text-white/50">
+      <div className="relative z-10 flex flex-wrap justify-center gap-x-3 gap-y-1.5 px-4 pb-6">
+        {Object.entries(districtColors).map(([district, color]) => (
+          <div key={district} className="flex items-center gap-1.5 text-[10px] text-white/50">
             <div className="h-2 w-2 rounded-sm shrink-0" style={{ backgroundColor: color }} />
-            {prov}
+            {getDisplayName(district)}
           </div>
         ))}
       </div>

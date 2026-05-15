@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import { FadeIn } from "@/components/ui/fade-in";
 
 export const metadata: Metadata = {
     title: "Contact Us | A&S Pearl Lanka Tours",
@@ -18,19 +19,21 @@ export default function ContactPage() {
 
             {/* Hero */}
             <section className="pt-36 pb-20 text-center px-4">
-                <span className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-widest text-amber-400 mb-4">
-                    <span className="text-[0.55rem]">✦</span> Get in Touch
-                </span>
-                <h1 className="text-4xl md:text-5xl font-bold text-white font-serif mb-4 drop-shadow-xl">
-                    Contact Us
-                </h1>
-                <p className="text-lg text-stone-200 max-w-xl mx-auto leading-relaxed">
-                    Have questions or ready to book your trip? Reach out to our friendly team.
-                </p>
+                <FadeIn>
+                    <span className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-widest text-amber-400 mb-4">
+                        <span className="text-[0.55rem]">✦</span> Get in Touch
+                    </span>
+                    <h1 className="text-4xl md:text-5xl font-bold text-white font-serif mb-4 drop-shadow-xl">
+                        Contact Us
+                    </h1>
+                    <p className="text-lg text-stone-200 max-w-xl mx-auto leading-relaxed">
+                        Have questions or ready to book your trip? Reach out to our friendly team.
+                    </p>
+                </FadeIn>
             </section>
 
             {/* Glass form card */}
-            <div className="container mx-auto px-4 max-w-4xl pb-28">
+            <FadeIn className="container mx-auto px-4 max-w-4xl pb-28">
                 <div className="backdrop-blur-md bg-white/10 border border-white/20 rounded-3xl shadow-2xl shadow-black/30 flex flex-col md:flex-row gap-0 overflow-hidden">
 
                     {/* Info panel */}
@@ -96,7 +99,7 @@ export default function ContactPage() {
                         </form>
                     </div>
                 </div>
-            </div>
+            </FadeIn>
         </main>
     );
 }

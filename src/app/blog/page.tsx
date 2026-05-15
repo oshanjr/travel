@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
+import { FadeIn, StaggerContainer, StaggerItem } from "@/components/ui/fade-in";
 
 export const metadata: Metadata = {
     title: "Travel Blog | A&S Pearl Lanka Tours",
@@ -14,7 +15,7 @@ const posts = [
         title: "10 Must-Visit Beaches in Sri Lanka",
         excerpt: "From the golden sands of Mirissa to the surfing paradise of Arugam Bay, discover the best beaches Sri Lanka has to offer.",
         date: "October 12, 2026",
-        image: "https://images.unsplash.com/photo-1577717903315-1691ae25ab3f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80",
         author: "Sarah Jenkins",
         category: "Beaches",
     },
@@ -23,7 +24,7 @@ const posts = [
         title: "A Foodie's Guide to Sri Lankan Curries",
         excerpt: "Spicy, aromatic, and incredibly diverse. Here's your ultimate guide to navigating the vibrant world of Sri Lankan cuisine.",
         date: "September 28, 2026",
-        image: "https://images.unsplash.com/photo-1601314167099-232775b4dbec?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        image: "https://images.unsplash.com/photo-1565557623262-b51c2513a641?auto=format&fit=crop&w=800&q=80",
         author: "David Chen",
         category: "Food & Culture",
     },
@@ -32,7 +33,7 @@ const posts = [
         title: "Hiking the Knuckles Mountain Range",
         excerpt: "Everything you need to know about trekking through one of Sri Lanka's most rugged and beautiful landscapes.",
         date: "August 15, 2026",
-        image: "https://images.unsplash.com/photo-1625736300986-caeb31998bd3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        image: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=800&q=80",
         author: "Kamal Perera",
         category: "Hiking",
     },
@@ -41,7 +42,7 @@ const posts = [
         title: "Exploring the Ancient City of Sigiriya",
         excerpt: "Rise before dawn and climb the legendary Lion Rock to witness a sunrise you will never forget. Here's our complete guide.",
         date: "July 3, 2026",
-        image: "https://images.unsplash.com/photo-1596402184320-417e7178b2cd?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        image: "https://images.unsplash.com/photo-1588598198321-9735fd52e0c3?auto=format&fit=crop&w=800&q=80",
         author: "Amara Silva",
         category: "Heritage",
     },
@@ -50,7 +51,7 @@ const posts = [
         title: "Wildlife Safari at Yala National Park",
         excerpt: "Yala is home to the world's highest density of leopards. Here's how to make the most of your safari experience.",
         date: "June 20, 2026",
-        image: "https://images.unsplash.com/photo-1564760055775-d63b17a55c44?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        image: "https://images.unsplash.com/photo-1549366021-9f761d450615?auto=format&fit=crop&w=800&q=80",
         author: "Ravi Mendis",
         category: "Wildlife",
     },
@@ -59,7 +60,7 @@ const posts = [
         title: "The Perfect Ceylon Tea Experience",
         excerpt: "Wander through the emerald hills of Nuwara Eliya and discover the story behind every cup of Ceylon tea.",
         date: "May 8, 2026",
-        image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        image: "https://images.unsplash.com/photo-1563911892437-1feda0179e1b?auto=format&fit=crop&w=800&q=80",
         author: "Priya Fernando",
         category: "Culture",
     },
@@ -78,23 +79,25 @@ export default function BlogPage() {
 
             {/* Hero */}
             <section className="pt-36 pb-20 text-center px-4">
-                <span className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-widest text-amber-400 mb-4">
-                    <span className="text-[0.55rem]">✦</span> Stories & Guides
-                </span>
-                <h1 className="text-4xl md:text-5xl font-bold text-white font-serif mb-4 drop-shadow-xl">
-                    Travel Blog
-                </h1>
-                <p className="text-lg text-stone-200 max-w-2xl mx-auto leading-relaxed">
-                    Stories, tips, and guides to inspire your next Sri Lankan adventure.
-                </p>
+                <FadeIn>
+                    <span className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-widest text-amber-400 mb-4">
+                        <span className="text-[0.55rem]">✦</span> Stories & Guides
+                    </span>
+                    <h1 className="text-4xl md:text-5xl font-bold text-white font-serif mb-4 drop-shadow-xl">
+                        Travel Blog
+                    </h1>
+                    <p className="text-lg text-stone-200 max-w-2xl mx-auto leading-relaxed">
+                        Stories, tips, and guides to inspire your next Sri Lankan adventure.
+                    </p>
+                </FadeIn>
             </section>
 
             {/* Blog grid */}
             <div className="container mx-auto px-4 max-w-6xl pb-28">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     {posts.map((post) => (
+                        <StaggerItem key={post.id}>
                         <article
-                            key={post.id}
                             className="backdrop-blur-md bg-white/10 border border-white/20 rounded-3xl overflow-hidden shadow-xl shadow-black/20 hover:bg-white/15 hover:border-amber-400/40 hover:-translate-y-1.5 hover:scale-[1.02] transition-all duration-500 group"
                         >
                             {/* Image */}
@@ -133,8 +136,9 @@ export default function BlogPage() {
                                 </Link>
                             </div>
                         </article>
+                        </StaggerItem>
                     ))}
-                </div>
+                </StaggerContainer>
             </div>
         </main>
     );
