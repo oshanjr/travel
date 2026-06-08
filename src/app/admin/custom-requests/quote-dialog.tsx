@@ -17,6 +17,7 @@ import { Label } from "@/components/ui/label";
 import { Badge } from "@/components/ui/badge";
 import { Loader2 } from "lucide-react";
 import { CustomTripRequest } from "@prisma/client";
+import { useAppAlert } from "@/components/ui/alert-provider";
 
 interface QuoteDialogProps {
     request: CustomTripRequest;
@@ -26,12 +27,13 @@ export function QuoteDialog({ request }: QuoteDialogProps) {
     const [open, setOpen] = useState(false);
     const [price, setPrice] = useState<string>("");
     const [isSubmitting, setIsSubmitting] = useState(false);
+    const { showAlert } = useAppAlert();
 
     const destinations = request.destinations as string[];
 
     async function handleQuote() {
         if (!price || isNaN(Number(price))) {
-            alert("Please enter a valid amount.");
+            showAlert("Invalid Amount", "Please enter a valid amount.");
             return;
         }
 
@@ -42,8 +44,9 @@ export function QuoteDialog({ request }: QuoteDialogProps) {
         if (res.success) {
             setOpen(false);
             setPrice("");
+            showAlert("Success", "Quote sent successfully.");
         } else {
-            alert(res.error);
+            showAlert("Error", res.error || "Failed to send quote.");
         }
     }
 

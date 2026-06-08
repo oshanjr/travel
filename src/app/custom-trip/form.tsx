@@ -30,6 +30,7 @@ import { Badge } from "@/components/ui/badge";
 import { Check, ChevronsUpDown, Loader2 } from "lucide-react";
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "@/components/ui/command";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { useAppAlert } from "@/components/ui/alert-provider";
 import { cn } from "@/lib/utils";
 
 const POPULAR_DESTINATIONS = [
@@ -71,6 +72,7 @@ type FormValues = z.infer<typeof formSchema>;
 export function CustomTripForm() {
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [isSuccess, setIsSuccess] = useState(false);
+    const { showAlert } = useAppAlert();
     const [openDestinations, setOpenDestinations] = useState(false);
 
     const form = useForm<FormValues>({
@@ -96,7 +98,7 @@ export function CustomTripForm() {
                 form.reset();
             } else {
                 console.error(response.error);
-                alert("Failed to submit request.");
+                showAlert("Error", "Failed to submit request.");
             }
         } catch (error) {
             console.error(error);

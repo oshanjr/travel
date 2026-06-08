@@ -84,7 +84,8 @@ model Booking {
 model Inquiry {
   id        String      @id @default(cuid())
   name      String
-  phone     String
+  email     String?
+  phone     String?
   message   String      @db.Text
   type      InquiryType @default(GENERAL)
   createdAt DateTime    @default(now())
@@ -124,4 +125,24 @@ model CustomTripRequest {
   quotedPrice        Decimal? // Optional, for the admin to fill later
   createdAt          DateTime @default(now())
   updatedAt          DateTime @updatedAt
+}
+
+model Subscriber {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  createdAt DateTime @default(now())
+}
+
+model BlogPost {
+  id        String   @id @default(cuid())
+  title     String
+  slug      String   @unique
+  excerpt   String   @db.Text
+  content   String   @db.Text
+  image     String
+  author    String
+  category  String
+  published Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }

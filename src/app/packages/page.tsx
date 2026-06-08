@@ -4,8 +4,8 @@ import { FadeIn, StaggerContainer, StaggerItem } from "@/components/ui/fade-in";
 
 export const dynamic = 'force-dynamic';
 
-export default async function PackagesPage() {
-    const packages = await getPackages();
+export default async function PackagesPage({ searchParams }: { searchParams: { destination?: string, date?: string } }) {
+    const packages = await getPackages({ destination: searchParams.destination });
 
     return (
         <div className="min-h-screen relative overflow-x-hidden">

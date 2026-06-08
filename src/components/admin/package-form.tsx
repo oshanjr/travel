@@ -46,7 +46,7 @@ export function PackageForm({ packageData }: PackageFormProps) {
             <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-2">
                     <Label htmlFor="price">Price ($)</Label>
-                    <Input id="price" name="price" type="number" step="0.01" required defaultValue={Number(packageData?.price)} />
+                    <Input id="price" name="price" type="number" step="0.01" required defaultValue={packageData ? Number(packageData.price) : ""} />
                 </div>
                 <div className="space-y-2">
                     <Label htmlFor="duration">Duration</Label>

@@ -10,6 +10,7 @@ import { GoogleReviews } from "@/components/public/google-reviews";
 import { ArrowRight, Award, Users, Map, Shield, Binoculars, Waves, Sprout, Mountain, Anchor, Compass } from "lucide-react";
 import Link from "next/link";
 import { FadeIn, StaggerContainer, StaggerItem } from "@/components/ui/fade-in";
+import { NewsletterForm } from "@/components/public/newsletter-form";
 
 // Helper to fetch Hero Config
 async function getHeroConfig() {
@@ -329,7 +330,7 @@ export default async function Home() {
           <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {featuredPackages.map((pkg) => (
               <StaggerItem key={pkg.id}>
-                <PackageCard pkg={pkg} />
+                <PackageCard pkg={pkg} variant="glass" />
               </StaggerItem>
             ))}
           </StaggerContainer>
@@ -367,19 +368,7 @@ export default async function Home() {
           <p className="text-stone-300 mb-10 max-w-2xl mx-auto text-lg">
             Subscribe for exclusive travel offers, hidden gems, and curated itineraries delivered to your inbox.
           </p>
-          <div className="flex flex-col sm:flex-row max-w-lg mx-auto gap-3 items-center justify-center">
-            <input
-              type="email"
-              placeholder="Your email address"
-              className="w-full sm:flex-1 h-14 px-6 rounded-full text-white bg-white/10 border border-white/20 backdrop-blur-md focus:outline-none focus:ring-2 focus:ring-amber-400 placeholder-stone-400 text-sm transition-all"
-            />
-            <Button
-              size="lg"
-              className="w-full sm:w-auto h-14 bg-amber-500 hover:bg-amber-400 text-stone-950 font-bold rounded-full px-10 shadow-xl shadow-amber-500/25 shrink-0 transition-all active:scale-95"
-            >
-              Subscribe
-            </Button>
-          </div>
+          <NewsletterForm />
         </FadeIn>
       </section>
     </main>

@@ -20,6 +20,7 @@ import { format } from "date-fns";
 import { cn } from "@/lib/utils";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import { useAppAlert } from "@/components/ui/alert-provider";
 
 interface BookingModalProps {
     pkg: Package;
@@ -31,6 +32,7 @@ export function BookingModal({ pkg }: BookingModalProps) {
     const [loading, setLoading] = useState(false);
     const { data: session } = useSession();
     const router = useRouter();
+    const { showAlert } = useAppAlert();
 
     async function handleBooking() {
         if (!session?.user) {
@@ -38,7 +40,10 @@ export function BookingModal({ pkg }: BookingModalProps) {
             return;
         }
 
-        if (!date) return;
+        if (!date) {
+            showAlert("Required", "Please select a date.");
+            return;
+        }
 
         setLoading(true);
         try {
@@ -49,12 +54,13 @@ export function BookingModal({ pkg }: BookingModalProps) {
             formData.append("totalAmount", pkg.price.toString());
 
             await createBooking(formData);
+            setOpen(false);
         } catch (error: any) {
             // If it's a NEXT_REDIRECT error, it's expected and we shouldn't alert
             if (error.message && error.message.includes('NEXT_REDIRECT')) {
                 throw error;
             }
-            alert("Failed to book.");
+            showAlert("Error", "Failed to book. Please try again.");
         } finally {
             setLoading(false);
         }

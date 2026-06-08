@@ -5,8 +5,17 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { Prisma } from "@prisma/client";
 
-export async function getPackages() {
+export async function getPackages(filters?: { destination?: string }) {
+    let whereClause: Prisma.PackageWhereInput = {};
+    
+    if (filters?.destination) {
+        whereClause.location = {
+            contains: filters.destination
+        };
+    }
+
     return await prisma.package.findMany({
+        where: whereClause,
         orderBy: { createdAt: 'desc' }
     });
 }

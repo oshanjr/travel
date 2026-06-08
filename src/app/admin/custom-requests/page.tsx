@@ -95,7 +95,7 @@ export default async function CustomRequestsPage() {
                                                 </Badge>
                                             </TableCell>
                                             <TableCell className="text-right">
-                                                <QuoteDialog request={req} />
+                                                <QuoteDialog request={{ ...req, quotedPrice: req.quotedPrice ? Number(req.quotedPrice) : null } as any} />
                                             </TableCell>
                                         </TableRow>
                                     ))

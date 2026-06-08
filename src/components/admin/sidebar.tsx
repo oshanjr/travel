@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import { LayoutDashboard, Settings, Package, Calendar, Users, LogOut, Map, ImageIcon } from "lucide-react";
+import { LayoutDashboard, Settings, Package, Calendar, Users, LogOut, Map, ImageIcon, FileText, MessageSquare, Mail, PenTool } from "lucide-react";
 import { signOut } from "next-auth/react";
 
 const sidebarLinks = [
@@ -13,7 +13,11 @@ const sidebarLinks = [
     { href: "/admin/hero", label: "Hero Slides", icon: ImageIcon },
     { href: "/admin/destinations", label: "Destinations", icon: Map },
     { href: "/admin/packages", label: "Packages", icon: Package },
+    { href: "/admin/custom-requests", label: "Custom Requests", icon: FileText },
     { href: "/admin/bookings", label: "Bookings", icon: Calendar },
+    { href: "/admin/inquiries", label: "Inquiries", icon: MessageSquare },
+    { href: "/admin/subscribers", label: "Subscribers", icon: Mail },
+    { href: "/admin/blog", label: "Blog CMS", icon: PenTool },
     { href: "/admin/admins", label: "Admins", icon: Users },
 ];
 

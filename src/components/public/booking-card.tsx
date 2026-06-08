@@ -11,6 +11,7 @@ import { format } from "date-fns";
 import { Calendar as CalendarIcon, Users } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useRouter } from "next/navigation";
+import { useAppAlert } from "@/components/ui/alert-provider";
 
 interface BookingCardProps {
     price: number;
@@ -23,6 +24,7 @@ export function BookingCard({ price, user, packageId, packageSlug }: BookingCard
     const [date, setDate] = useState<Date>();
     const [guests, setGuests] = useState(1);
     const router = useRouter();
+    const { showAlert } = useAppAlert();
 
     const handleBookNow = () => {
         if (!user) {
@@ -31,7 +33,7 @@ export function BookingCard({ price, user, packageId, packageSlug }: BookingCard
         }
 
         if (!date) {
-            alert("Please select a date");
+            showAlert("Required", "Please select a date for your booking.");
             return;
         }
 
